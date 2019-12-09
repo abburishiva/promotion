@@ -1,0 +1,1931 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <collaboration id="Collaboration">
+    <participant id="pool1" name="DSR - Promote Offering to SIT" processRef="dsrPromoteOfferingToSIT"></participant>
+  </collaboration>
+  <process id="dsrPromoteOfferingToSIT" name="DSR - Promote Offering to SIT" isExecutable="true">
+    <laneSet id="laneSet_dsrPromoteOfferingToSIT">
+      <lane id="lane1">
+        <flowNodeRef>startevent1</flowNodeRef>
+        <flowNodeRef>scripttask1</flowNodeRef>
+        <flowNodeRef>scripttask3</flowNodeRef>
+        <flowNodeRef>subprocess1</flowNodeRef>
+        <flowNodeRef>scripttask6</flowNodeRef>
+        <flowNodeRef>endevent4</flowNodeRef>
+        <flowNodeRef>scripttask7</flowNodeRef>
+        <flowNodeRef>scripttask8</flowNodeRef>
+      </lane>
+    </laneSet>
+    <startEvent id="startevent1" name="Start" activiti:initiator="startUser">
+      <extensionElements>
+        <activiti:formProperty id="localCommunitySuffix" name="Please enter 'localCommunitySuffix'" type="string" default="Data Inventory" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="enterpriseCommunitySuffix" name="Please enter 'enterpriseCommunitySuffix'" type="string" default="Registration Governance" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="dataAssetUtilisesPipelineRelationTypeId" name="Please enter 'dataAssetUtilisesPipelineRelationTypeId'" type="string" default="81928df8-f0eb-414c-9a19-3883620fdc7e" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="hummingbirdPipelineName" name="Please enter 'hummingbirdPipelineName'" type="string" default="Hummingbird" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="datasetHasOfferingsRelationTypeId" name="Please enter 'datasetHasOfferingsRelationTypeId'" type="string" default="d24ef965-370b-41e0-8d2f-e26c969dc891" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="accessibleThroughFileRelTypeId" name="Please enter 'accessibleThroughFileRelTypeId'" type="string" default="40b4a9cc-8faa-4d26-bb16-f1c4dfd47bee" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="accessibleThroughDatabaseRelTypeId" name="Please enter 'accessibleThroughDatabaseRelTypeId'" type="string" default="3b592b92-4941-489b-bfe4-8f6f77970f44" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="accessibleThroughHDFSRelTypeId" name="Please enter 'accessibleThroughHDFSRelTypeId'" type="string" default="a300fb1c-4697-4ad0-b7f0-b5e6b58e1b52" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="accessibleThroughS3RelTypeId" name="Please enter 'accessibleThroughS3RelTypeId'" type="string" default="1592d0c6-11ab-4f78-a8e7-62f46e159562" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="accessibleThroughImpalaRelTypeId" name="Please enter 'accessibleThroughImpalaRelTypeId'" type="string" default="3f467154-1623-438c-84b6-b8d2d69c8e22" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="storageResourceURIAttrTypeId" name="Please Enter &quot;storageResourceURIAttrTypeId&quot;" type="string" default="54d4120b-f05c-46cb-bc32-0b11188f9c8d" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="storageFormatAttrTypeId" name="Please Enter &quot;storageFormatAttrTypeId&quot;" type="string" default="b804b014-ae40-4b43-818a-e1d4aa3de563" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="storageCompressionAttrTypeId" name="Please Enter &quot;storageCompressionAttrTypeId&quot;" type="string" default="12933664-4d1a-4c40-b7d2-b60f0da628ea" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="awsAccountIdentifierAttrTypeId" name="Please Enter &quot;awsAccountIdentifierAttrTypeId&quot;" type="string" default="d09f9267-619e-460b-af45-6e50612d7a26" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="kmsARNAttrTypeId" name="Please Enter &quot;kmsARNAttrTypeId&quot;" type="string" default="c7b87e6a-101d-4131-8a9b-d83e3b947bfa" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bucketARNAttrTypeId" name="Please Enter &quot;bucketARNAttrTypeId&quot;" type="string" default="1c74950e-24d1-40a9-a379-3d0ac60016de" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bucketPrefixAttrTypeId" name="Please Enter &quot;bucketPrefixAttrTypeId&quot;" type="string" default="eef937af-e816-409e-819c-b1e9da50f627" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bucketNameAttrTypeId" name="Please Enter &quot;bucketNameAttrTypeId&quot;" type="string" default="25d236cf-19c5-49e9-b2ce-b9997e1d77ff" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="awsRegionAttrTypeId" name="Please Enter &quot;awsRegionAttrTypeId&quot;" type="string" default="1daa8e4c-4365-4bc2-9bc9-76a5206e4ce8" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="authenticationTypeAttrTypeId" name="Please Enter &quot;authenticationTypeAttrTypeId&quot;" type="string" default="c8bfa665-e60d-4f8b-b56e-76b63082d525" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="userIdAttrTypeId" name="Please Enter &quot;userIdAttrTypeId&quot;" type="string" default="1e72b971-002f-43ba-9486-56663bc82a6e" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="userIdPasswordAttrTypeId" name="Please Enter &quot;userIdPasswordAttrTypeId&quot;" type="string" default="0dead660-76fc-4457-9adf-2faff2c1be47" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="resourceParametersAttrTypeId" name="Please Enter &quot;resourceParametersAttrTypeId&quot;" type="string" default="deeeee1f-5a19-4d44-8ebb-759e92fd6cba" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="awsDefaultProfileAttrTypeId" name="Please Enter &quot;awsDefaultProfileAttrTypeId&quot;" type="string" default="0d22b49f-5b90-4803-ada3-3f566fbfe201" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="customReaderClassAttrTypeId" name="Please Enter &quot;customReaderClassAttrTypeId&quot;" type="string" default="69958c0e-3b87-4a75-8cb1-5fbcab7e0044" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="customReaderParamsAttrTypeId" name="Please Enter &quot;customReaderParamsAttrTypeId&quot;" type="string" default="dfa5b5de-ebc5-4942-b3ea-c02f1797693d" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="hadoopConfigLocAttrTypeId" name="Please Enter &quot;hadoopConfigLocAttrTypeId&quot;" type="string" default="1ca1adfd-bfa9-44bb-b27c-9be0c72a619b" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="databaseDataIngestionStrategyAttrTypeId" name="Please Enter &quot;databaseDataIngestionStrategyAttrTypeId&quot;" type="string" default="9eb49b26-9e92-42c1-9914-41a54b554548" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="fetchSizeAttrTypeId" name="Please Enter &quot;fetchSizeAttrTypeId&quot;" type="string" default="2f3881b8-7225-46fa-ab09-af530a676d13" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="databaseDataRetrievalQueryParametersAttrTypeId" name="Please Enter &quot;databaseDataRetrievalQueryParametersAttrTypeId&quot;" type="string" default="0ca0ebe4-2baa-4bcb-b9f8-cbc719d44902" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="databaseDataRetrivalPartitionAttrTypeId" name="Please Enter &quot;databaseDataRetrivalPartitionAttrTypeId&quot;" type="string" default="76a90705-5e40-44e1-8b76-c471be0a8aac" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="fileDelimiterAttrTypeId" name="Please Enter &quot;fileDelimiterAttrTypeId&quot;" type="string" default="dcdda23d-c7fd-4e83-827e-a5f033860cf3" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="fileFlagExtensionAttrTypeId" name="Please Enter &quot;fileFlagExtensionAttrTypeId&quot;" type="string" default="04af1e9e-f0f9-4233-a89d-b2e679a655d4" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="fieldRuleAssetTypeId" name="Please Enter &quot;fieldRuleAssetTypeId&quot;" type="string" default="48d23f6f-077d-4965-86a9-e3f5059555bd" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="storagePlatformAttrTypeId" name="Please Enter &quot;storagePlatformAttrTypeId &quot;" type="string" default="8cbc31a9-4460-4e54-baa3-03d699217fee" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="databaseDataRetrievalQueryAttrTypeId" name="Please Enter &quot;databaseDataRetrievalQueryAttrTypeId&quot;" type="string" default="b1eeea0f-c533-4c38-bdac-c9c3eb5607d8" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="impalaConfigLocAttrTypeId" name="Please Enter &quot;impalaConfigLocAttrTypeId&quot; " type="string" default="7528a785-1b40-446e-83b9-06571186d444" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="fileHeaderRowCountAttrTypeId" name="Please Enter &quot;fileHeaderRowCountAttrTypeId&quot;" type="string" default="075baad6-d05e-49d3-831f-991b7037caca" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="fileFooterRowCountAttrTypeId" name="Please Enter &quot;fileFooterRowCountAttrTypeId&quot;" type="string" default="3b8e03e4-feae-49bc-9223-bda57529362e" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="fileTrailerSchemaAttrTypeId" name="Please Enter &quot;fileTrailerSchemaAttrTypeId&quot;" type="string" default="aa1214a8-5f51-43df-8418-92c2664daf8a" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="fileTrailerRecordCountAttrTypeId" name="Please enter 'fileTrailerRecordCountAttrTypeId'" type="string" default="855bbbad-c7d3-40c1-85ae-76266621380b" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="hummingbirdPipelineAssetId" name="Please enter 'hummingbirdPipelineAssetId'" type="string" default="dfc27d26-3ddb-4a97-8e3a-accd43f00c06" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="techAssetUtilizesPipelineRelationTypeId" name="Please enter 'techAssetUtilizesPipelineRelationTypeId'" type="string" default="ef5413d1-cbbf-413d-aede-99692e6b3e8c" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="pipelinePromotedToPipelineRelTypeId" name="Please enter 'pipelinePromotedToPipelineRelTypeId'" type="string" default="704013cb-4158-445a-87f7-c04c96414d70" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="dataSetContainsSchemaRelTypeId" name="please enter &quot;dataSetContainsSchemaRelTypeId&quot;" type="string" default="913b4d30-3295-4248-8eeb-c73c9041464d" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="enterpriseCommunityId" name="please enter&quot;enterpriseCommunityId&quot;" type="string" default="91646274-cbf4-4434-8b9e-735591877159" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="schemaUtilisesPipelineRelationTypeId" name="please enter&quot;schemaUtilisesPipelineRelationTypeId&quot;" type="string" default="e8a445eb-b36a-4f0b-bc05-ba1d3237c024" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="enterprisePhysicalModelInventoryCommunityId" name="Please enter 'enterprisePhysicalModelInventoryCommunityId'" type="string" default="bd8b164e-0bc3-40d7-9282-e4b456277f84" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="approvedStatusId" name="Please enter 'approvedStatusId'" type="string" default="00000000-0000-0000-0000-000000005025" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="activeStatusId" name="Please enter 'activeStatusId'" type="string" default="6057d22c-a68b-447a-b1b5-a1d782ef52cc" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="candidateStatusId" name="Please enter 'candidateStatusId'" type="string" default="00000000-0000-0000-0000-000000005008" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="schemaContainsTableRelTypeId" name="Please enter 'schemaContainsTableRelTypeId'" type="string" default="00000000-0000-0000-0000-000000007043" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="columnIsPartOfTableRelTypeId" name="Please enter 'columnIsPartOfTableRelTypeId'" type="string" default="00000000-0000-0000-0000-000000007042" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="dataOfferingGroupsSchemaRelTypeId" name="please enter&quot;dataOfferingGroupsSchemaRelTypeId&quot;" type="string" default="3d4e97f7-4c96-40b3-8150-8b2041e1bf99" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="descriptionAttrId" name="Please Enter &quot;descriptionAttrId&quot;" type="string" default="00000000-0000-0000-0000-000000003114" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="consumableAttrId" name="Please Enter  &quot;consumableAttrId&quot;" type="string" default="9640bf36-2b4f-4b1a-a3ba-03f52e5f1466" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="publicationModeAttrId" name="Please Enter  &quot;publicationModeAttrId&quot;" type="string" default="95f5d934-a900-4fb9-bc07-7951371e8bf6" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="slaOffsetDaysAttrId" name="Please Enter 'slaOffsetDaysAttrId'" type="string" default="205d5984-4a67-433c-b7a5-7f394c81ed15" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="slaArrivalTimeAttrId" name="Please Enter &quot;slaArrivalTimeAttrId&quot;" type="string" default="cac39efb-ade1-484d-9b48-a374bfe2972b" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="slaCalenderAttrId" name="Please Enter &quot;slaCalenderAttrId&quot;" type="string" default="3ce0a59e-7ad5-4799-bd5f-15821c5318f5" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="contactEmailAttrId" name="Please Enter &quot;contactEmailAttrId&quot;" type="string" default="27595c98-199c-4e5f-bb67-498404765750" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="dataOfferingAssetTypeId" name="Please Enter &quot;dataOfferingAssetTypeId&quot;" type="string" default="f9a31319-eb7f-45df-a871-8bd55c9c51a2" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="candidateStatusTypeId" name="Please Select &quot;candidateStatusTypeId&quot;" type="string" default="00000000-0000-0000-0000-000000005008" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="dataofferingMilestoneFieldRelTypeId" name="Please Enter &quot;dataofferingMilestoneFieldRelTypeId&quot;" type="string" default="6c2b1fdd-5856-44d1-83d7-7c3384d25e80" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="instanceNameAttrTypeId" name="Please Enter &quot;instanceNameAttrTypeId&quot;" type="string" default="b31b1219-2266-4d28-9e97-9446d826fa4b" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="dataOfferingAssociatedDataSetRelTypeId" name="Please enter 'dataOfferingAssociatedDataSetRelTypeId'" type="string" default="d24ef965-370b-41e0-8d2f-e26c969dc891" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="epsProducerNameAttrTypeId" name="Please Enter &quot;epsProducerNameAttrTypeId&quot;" type="string" default="1fe65bc0-8e47-419b-b0f8-c0087251f78a" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="epsProducerDomainId" name="Please Enter &quot;epsProducerDomainId&quot;" type="string" default="426a7110-8ee2-44c1-9810-7ddb5f624e83" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="schemaDefinitionAttrTypeId" name="Please Enter 'schemaDefinitionAttrTypeId'" type="string" default="e1ca89dc-df3b-41b2-99ea-0e75f3ff26e4" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="avroSchemaPrimaryKeyAttrTypeId" name="Please Enter &quot;avroSchemaPrimaryKeyAttrTypeId&quot;" type="string" default="a3138dea-815a-492f-a840-ebc744ee10ac" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="avroSchemaAttrTypeId" name="Please Enter &quot;avroSchemaAttrTypeId&quot;" type="string" default="53bdeb27-8333-4dda-a20a-17f158a95e70" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="descopedDomainId" name="Please enter&quot;descopedDomainId&quot;" type="string" default="57fd1702-be60-4349-9c1f-cd9ddca15ff3" readable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="descopedStatus" name="Please enter&quot;descopedStatus&quot;" type="string" default="00000000-0000-0000-0000-000000005052" readable="false" required="true"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <scriptTask id="scripttask1" name="Pre- Processing" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <extensionElements>
+        <activiti:executionListener event="end" class="com.collibra.dgc.core.workflow.activiti.executionlistener.FlushExecutionListener"></activiti:executionListener>
+      </extensionElements>
+      <script><![CDATA[import com.collibra.dgc.core.api.dto.MatchMode
+
+
+def currentAssetId = itemV2.getId()
+def promoteStatus
+def everestCommunity
+def hasOfferings = []
+def currentPipeline
+def promotedPipelineId
+def promotedPipelineName
+def currentPipelineId
+def promotedDatasetDomainId
+def promotedStorageDomainId
+def everestDataSetDomain
+def newDSDomainId
+def enterPriseDataSetDomain
+def currentDatasetDomain = itemV2.getDomainId()
+def currentDatasetDomainName= domainApi.getDomain(currentDatasetDomain).getName()
+def currentDatasetDomainType=domainApi.getDomain(currentDatasetDomain).getType().getId()
+loggerApi.info('currentDatasetDomainType---'+currentDatasetDomainType)
+
+loggerApi.info('currentDatasetDomainName---'+currentDatasetDomainName)
+def communityId = domainApi.getDomain(currentDatasetDomain).getCommunity().getId()
+def communityName = domainApi.getDomain(currentDatasetDomain).getCommunity().getName()
+loggerApi.info('communityName->'+communityName)
+def applicationId=currentDatasetDomainName.split(' -')[0]
+loggerApi.info('applicationId	-->'+applicationId)
+
+def lobType= ""
+
+lobType = communityName.split(' -')[0]
+loggerApi.info('lobType--'+lobType)
+
+def storageDomains =  findDomain(lobType+' - Storage Platforms', MatchMode.EXACT, null,  communityId)
+if(!storageDomains.isEmpty()) {
+	localStorageDomain= storageDomains.get(0).getId()
+}
+
+def everestPrefix
+if(lobType == 'CORP') {
+	everestPrefix = 'Everest'
+}
+else {
+	everestPrefix = lobType
+}
+/* Domain in  Registration Goverance */
+loggerApi.info('everestPrefix'+everestPrefix)
+def formEverestCommunityName = everestPrefix+ ' ' +enterpriseCommunitySuffix
+loggerApi.info("formEverestCommunityName==>"+formEverestCommunityName)
+
+def findDataSetRegistryDomains
+def findEverestCommunity= findCommunity(formEverestCommunityName, MatchMode.EXACT)
+if(!findEverestCommunity.isEmpty()) {
+	everestCommunity = findEverestCommunity.get(0).getId()
+	findDataSetRegistryDomains = findDomain(currentDatasetDomainName, MatchMode.EXACT, null,  everestCommunity)
+	if(!findDataSetRegistryDomains.isEmpty()) {
+		everestDataSetDomain = findDataSetRegistryDomains.get(0).getId()
+	}
+	else {
+		def newEverestDataSetDomain=addDomain(everestCommunity, currentDatasetDomainType, currentDatasetDomainName)
+		everestDataSetDomain=newEverestDataSetDomain.getId()
+	}
+}
+	loggerApi.info("everestDataSetDomain==>"+everestDataSetDomain)
+	/* Domain in Enterprise Community  */
+
+	findDataSetRegistryDomains = findDomain(currentDatasetDomainName, MatchMode.EXACT, null,  string2Uuid(enterpriseCommunityId))
+	if(!findDataSetRegistryDomains.isEmpty()) {
+		enterPriseDataSetDomain = findDataSetRegistryDomains.get(0).getId()
+		loggerApi.info("enterPriseDataSetDomain==>"+enterPriseDataSetDomain)
+	}
+	else {
+		def newEnterPriseDataSetDomain=addDomain(string2Uuid(enterpriseCommunityId), currentDatasetDomainType, currentDatasetDomainName)
+		enterPriseDataSetDomain=newEnterPriseDataSetDomain.getId()
+		loggerApi.info("newEnterPriseDataSetDomain==>"+newEnterPriseDataSetDomain)
+	}
+	
+	
+
+
+
+
+	/**************************************/
+
+
+
+	def utilizesPipeline = findRelationsBySourceAndType(currentAssetId,string2Uuid(dataAssetUtilisesPipelineRelationTypeId))
+	if(!utilizesPipeline.isEmpty()) {
+		def hummingBirdFound = utilizesPipeline.find{
+			it.getTarget().getName() == 'Humming Bird'
+		}
+
+		def orangeFound = utilizesPipeline.find{
+			it.getTarget().getName() == 'Orange'
+		}
+		if(hummingBirdFound != null && orangeFound == null) {
+			currentPipelineId = hummingBirdFound.getTarget().getId()
+			loggerApi.info("currentPipelineId===>"+currentPipelineId)
+			currentPipeline = hummingBirdFound.getTarget().getName()
+			loggerApi.info("currentPipeline===>"+currentPipeline)
+			newDSDomainId = everestDataSetDomain
+			promoteStatus = approvedStatusId
+		}
+		if(hummingBirdFound == null && orangeFound != null) {
+			currentPipelineId = orangeFound.getTarget().getId()
+			currentPipeline = orangeFound.getTarget().getName()
+			newDSDomainId = enterPriseDataSetDomain
+			promoteStatus = activeStatusId
+		}
+		if(hummingBirdFound != null && orangeFound != null) {
+			currentPipelineId = orangeFound.getTarget().getId()
+			currentPipeline = orangeFound.getTarget().getName()
+			newDSDomainId = enterPriseDataSetDomain
+			promoteStatus = activeStatusId
+		}
+		if(hummingBirdFound == null && orangeFound == null) {
+			currentPipelineId = utilizesPipeline.get(0).getTarget().getId()
+			currentPipeline = utilizesPipeline.get(0).getTarget().getName()
+			newDSDomainId = currentDatasetDomain
+			promoteStatus = candidateStatusId
+		}
+		def promotedToPipelineRelations = findRelationsBySourceAndType(currentPipelineId,string2Uuid(pipelinePromotedToPipelineRelTypeId))
+		if(!promotedToPipelineRelations.isEmpty()) {
+			promotedPipelineId = promotedToPipelineRelations.get(0).getTarget().getId()
+			promotedPipelineName = promotedToPipelineRelations.get(0).getTarget().getName()
+			loggerApi.info("promotedPipelineName==>"+promotedPipelineName)
+		}
+		loggerApi.info('newDSDomainId----'+newDSDomainId)
+		/*def hasOfferingRelations = findRelationsBySourceAndType(currentAssetId,string2Uuid(datasetHasOfferingsRelationTypeId))
+		if(!hasOfferingRelations.isEmpty()) {
+			hasOfferingRelations.collect {
+				hasOfferings.add(it.getTarget().getId())
+			}*/
+		}
+	
+
+
+	def storageFormatValuesMap = [:]
+
+	def storageFormatAllowedValues = attributeTypeApi.getAttributeType(string2Uuid(storageFormatAttrTypeId)).getAllowedValues()
+
+	for(storageFormatAllowedValue in storageFormatAllowedValues) {
+		storageFormatValuesMap.put(storageFormatAllowedValue, storageFormatAllowedValue)
+	}
+
+	def storageCompressionValuesMap = [:]
+
+	def storageCompressionAllowedValues = attributeTypeApi.getAttributeType(string2Uuid(storageCompressionAttrTypeId)).getAllowedValues()
+
+	for(storageCompressionAllowedValue in storageCompressionAllowedValues) {
+		storageCompressionValuesMap.put(storageCompressionAllowedValue, storageCompressionAllowedValue)
+	}
+
+	def AuthenticationTypeValuesMap = [:]
+
+	def AuthenticationTypeAllowedValues = attributeTypeApi.getAttributeType(string2Uuid(authenticationTypeAttrTypeId)).getAllowedValues()
+
+	for(AuthenticationTypeAllowedValue in AuthenticationTypeAllowedValues) {
+		AuthenticationTypeValuesMap.put(AuthenticationTypeAllowedValue, AuthenticationTypeAllowedValue)
+	}
+
+	def storagePlatformValuesMap = [:]
+
+	def storagePlatformAllowedValues = attributeTypeApi.getAttributeType(string2Uuid(storagePlatformAttrTypeId)).getAllowedValues()
+	storagePlatformAllowedValues.remove('KAFKA')
+	storagePlatformAllowedValues.remove('UDS Registration DB')
+	for(storagePlatformAllowedValue in storagePlatformAllowedValues) {
+		storagePlatformValuesMap.put(storagePlatformAllowedValue, storagePlatformAllowedValue)
+	}
+
+
+
+	def databaseIngValuesMap = [:]
+
+	def databaseIngAllowedValues = attributeTypeApi.getAttributeType(string2Uuid(databaseDataIngestionStrategyAttrTypeId)).getAllowedValues()
+
+	for(databaseIngAllowedValue in databaseIngAllowedValues) {
+		databaseIngValuesMap.put(databaseIngAllowedValue, databaseIngAllowedValue)
+	}
+
+	execution.setVariable('promoteStatus',promoteStatus)
+	execution.setVariable('newDSDomainId',newDSDomainId)
+	execution.setVariable('currentPipeline',currentPipeline)
+	execution.setVariable('AuthenticationTypeValuesMap',AuthenticationTypeValuesMap)
+	execution.setVariable('storageFormatValuesMap',storageFormatValuesMap)
+	execution.setVariable('storageCompressionValuesMap',storageCompressionValuesMap)
+	execution.setVariable('storagePlatformValuesMap',storagePlatformValuesMap)
+	execution.setVariable('databaseIngValuesMap',databaseIngValuesMap)
+	//execution.setVariable('hasOfferings',hasOfferings)
+	execution.setVariable('promotedPipelineName',promotedPipelineName)
+	execution.setVariable('promotedPipelineId',promotedPipelineId)
+	execution.setVariable('everestCommunity',everestCommunity)
+	execution.setVariable('enterPriseDataSetDomain',enterPriseDataSetDomain)
+	execution.setVariable('everestDataSetDomain',everestDataSetDomain)]]></script>
+    </scriptTask>
+    <sequenceFlow id="flow2" sourceRef="scripttask1" targetRef="subprocess1"></sequenceFlow>
+    <sequenceFlow id="flow4" sourceRef="startevent1" targetRef="scripttask3"></sequenceFlow>
+    <scriptTask id="scripttask3" name="Utility functions" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script><![CDATA[import com.collibra.dgc.core.api.component.logger.LoggerApi
+import com.collibra.dgc.core.api.dto.MatchMode
+import com.collibra.dgc.core.api.dto.PagedResponse
+import com.collibra.dgc.core.api.dto.instance.attribute.AddAttributeRequest
+import com.collibra.dgc.core.api.dto.instance.attribute.FindAttributesRequest
+import com.collibra.dgc.core.api.dto.instance.community.FindCommunitiesRequest
+import com.collibra.dgc.core.api.dto.instance.domain.FindDomainsRequest
+import com.collibra.dgc.core.api.dto.instance.relation.AddRelationRequest
+import com.collibra.dgc.core.api.dto.instance.relation.FindRelationsRequest
+import com.collibra.dgc.core.api.dto.instance.responsibility.AddResponsibilityRequest
+import com.collibra.dgc.core.api.dto.instance.responsibility.FindResponsibilitiesRequest
+import com.collibra.dgc.core.api.dto.user.FindUsersRequest
+import com.collibra.dgc.core.api.model.ResourceType
+import com.collibra.dgc.core.api.model.instance.Asset
+import com.collibra.dgc.core.api.dto.instance.asset.AddAssetRequest
+import com.collibra.dgc.core.api.dto.instance.asset.ChangeAssetRequest
+import com.collibra.dgc.core.api.dto.instance.asset.FindAssetsRequest
+import com.collibra.dgc.core.api.dto.instance.domain.AddDomainRequest
+
+def addAsset(name,typeId,domainId,displayName,statusId) {
+return assetApi.addAsset(
+	AddAssetRequest.builder()
+	.name(name)
+	.typeId(typeId)
+	.domainId(domainId)
+	.displayName(displayName)
+	.status(statusId)
+	.build()
+	)
+}
+
+def addAttribute(assetId,typeId,value) {
+	return attributeApi.addAttribute(
+		AddAttributeRequest.builder()
+		.assetId(assetId)
+		.typeId(typeId)
+		.value(value)
+		.build()
+		)
+}
+
+def findAssets(name, matchMode,statusIds,typeIds, domainId,communityId) {
+	
+		List<Asset> assets = new ArrayList<Asset>();
+		FindAssetsRequest.Builder   builder         = new FindAssetsRequest().builder();
+		Boolean moreToProcess                               = true;
+		int offset                                          = 0;
+		while(moreToProcess){
+			builder
+					.offset(offset)
+					.limit(1000)
+			PagedResponse<Asset> response  = assetApi.findAssets(builder.name(name).nameMatchMode(matchMode).typeIds(typeIds).domainId(domainId).statusIds(statusIds).communityId(communityId).build());
+			assets.addAll(response.getResults());
+			if(assets.size()==response.total){
+				moreToProcess = false;
+			}
+			else
+			{
+				offset = assets.size();
+			}
+		}
+		return assets;
+	}
+
+def changeAsset(id,name,displayName,domainId,statusId) {
+	return assetApi.changeAsset(
+		ChangeAssetRequest.builder()
+		.id(id)
+		.name(name)
+		.displayName(displayName)
+		.domainId(domainId)
+		.statusId(statusId)
+		.build()
+		)
+}
+
+def findAssetByTypeAndDomain(typeIds, domainId) {
+	return assetApi.findAssets(
+			FindAssetsRequest.builder()
+			.typeIds(typeIds)
+			.domainId(domainId)
+			.build()
+			).getResults()
+}
+
+def findAttribute(assetId, typeIds) {
+	def attributes = attributeApi.findAttributes(
+			FindAttributesRequest.builder()
+			.assetId(assetId)
+			.typeIds(typeIds)
+			.build()
+			).getResults()
+
+
+	if(!attributes.isEmpty()) {
+		return	attributes.get(0).getValue()
+	}
+}
+
+def changeAttribute(id, value) {
+	attributeApi.changeAttribute(
+			ChangeAttributeRequest.builder()
+			.id(id)
+			.value(value)
+			.build()
+			)
+}
+
+def findAttributeOfAsset(assetId,typeIds) {
+	attributeApi.findAttributes(
+	FindAttributesRequest.builder()
+	.assetId(assetId)
+	.typeIds(typeIds)
+	.build()
+	).getResults()
+	}
+
+def findCommunityWithParentCommunityId(name, nameMatchMode, parentId) {
+	return communityApi.findCommunities(FindCommunitiesRequest.builder()
+			.name(name)
+			.nameMatchMode(nameMatchMode)
+			.parentId(parentId)
+			.build()
+			).getResults()
+}
+
+def findCommunity(name, nameMatchMode) {
+	return communityApi.findCommunities(FindCommunitiesRequest.builder()
+			.name(name)
+			.nameMatchMode(nameMatchMode)
+			.build()
+			).getResults()
+}
+
+def findRelationsByTargetAndType(sourceId,relationTypeId) {
+	return relationApi.findRelations(
+			FindRelationsRequest.builder()
+			.targetId(sourceId)
+			.relationTypeId(relationTypeId)
+			.build()
+			).getResults()
+}
+
+def findRelationsBySourceAndType(targetId,relationTypeId) {
+	return relationApi.findRelations(
+			FindRelationsRequest.builder()
+			.sourceId(targetId)
+			.relationTypeId(relationTypeId)
+			.build()
+			).getResults()
+}
+
+def findRelations(sourceId,relationTypeId,targetId) {
+	return relationApi.findRelations(
+			FindRelationsRequest.builder()
+			.sourceId(sourceId)
+			.relationTypeId(relationTypeId)
+			.targetId(targetId)
+			.build()
+			).getResults()
+}
+
+def addRelation(sourceId,typeId,targetId) {
+	relationApi.addRelation(
+		AddRelationRequest.builder()
+		.sourceId(sourceId)
+		.typeId(typeId)
+		.targetId(targetId)
+		.build()
+		)
+}
+
+def getCurrentUserName() {
+	return userApi.getCurrentUser().get().getUserName()
+}
+
+def getCurrentUserId() {
+	return userApi.getCurrentUser().get().getId()
+}
+
+def getUserNameById(userId) {
+	return userApi.getUser(userId).getUserName()
+}
+
+def getResourceTypeByOwnerId(ownerId) {
+	return userApi.getUser(ownerId).getResourceType()
+}
+
+def findUsersByUserName(userName) {
+	return userApi.findUsers(
+			FindUsersRequest.builder()
+			.name(userName)
+			.build()
+			).getResults()
+}
+
+def findDomain(name, nameMatchMode, typeId, communityId) {
+	return domainApi.findDomains(FindDomainsRequest.builder()
+			.name(name)
+			.nameMatchMode(nameMatchMode)
+			.typeId(typeId)
+			.communityId(communityId)
+			.build()
+			).getResults()
+}
+
+def findDomainByNameAndCommunity(name, nameMatchMode, communityId) {
+	return domainApi.findDomains(FindDomainsRequest.builder()
+			.name(name)
+			.nameMatchMode(nameMatchMode)
+			.communityId(communityId)
+			.build()
+			).getResults()
+}
+
+def addResponsibility(roleId, ownerId, resourceId, resourceType) {
+	return responsibilityApi.addResponsibility(
+			AddResponsibilityRequest.builder()
+			.roleId(roleId)
+			.ownerId(ownerId)
+			.resourceId(resourceId)
+			.resourceType(resourceType)
+			.build()
+			)
+}
+
+def findResponsibility(ownerIds, resourceIds, roleIds) {
+	return responsibilityApi.findResponsibilities(
+			FindResponsibilitiesRequest.builder()
+			.ownerIds(ownerIds)
+			.resourceIds(resourceIds)
+			.roleIds(roleIds)
+			.build()
+			).getResults()
+}
+
+def addDomain(communityId, typeId, name) {
+	return	domainApi.addDomain(AddDomainRequest.builder()
+			.communityId(communityId)
+			.typeId(typeId)
+			.name(name)
+			.build()
+			)
+}
+
+def findResponsibilitiesByRoleAndResource(resourceIds, roleIds) {
+	return responsibilityApi.findResponsibilities(
+			FindResponsibilitiesRequest.builder()
+			.resourceIds(resourceIds)
+			.roleIds(roleIds)
+			.build()
+			).getResults()
+}
+
+def removeResponsibility(responsibilityId) {
+	return responsibilityApi.removeResponsibility(responsibilityId)
+}
+
+
+def getStatusInfoOfAsset(assetId) {
+	return assetApi.getAsset(assetId).getStatus()
+}
+
+def getStatusIdByName(statusName) {
+	return statusApi.getStatusByName(statusName).getId()
+}
+
+def getAttributeAllowedValues(attributeTypeId) {
+	return attributeTypeApi.getAttributeType(attributeTypeId).getAllowedValues()
+}
+
+def getDomainInfoByAssetId(assetId) {
+	return assetApi.getAsset(assetId).getDomain()
+}
+
+def getCommunityInfoByDomainId(domainId) {
+	return domainApi.getDomain(domainId).getCommunity()
+}
+
+def getAssetNameById(assetId) {
+	return assetApi.getAsset(assetId).getName()
+}]]></script>
+    </scriptTask>
+    <sequenceFlow id="flow1" sourceRef="scripttask3" targetRef="scripttask1"></sequenceFlow>
+    <subProcess id="subprocess1" name="Sub Process">
+      <multiInstanceLoopCharacteristics isSequential="true" activiti:collection="${utility.toList(itemV2.getId())}" activiti:elementVariable="eachOffering"></multiInstanceLoopCharacteristics>
+      <scriptTask id="scripttask4" name="Get Storage of selected offering" scriptFormat="groovy" activiti:autoStoreVariables="false">
+        <script><![CDATA[def storageAssetId
+def storageToOfferingRelationTypeId
+def storageAssetName
+def storagePlatformType
+loggerApi.info('storagePlatformType--'+storagePlatformType)
+
+def storageRelations = [accessibleThroughFileRelTypeId, accessibleThroughDatabaseRelTypeId, accessibleThroughHDFSRelTypeId, accessibleThroughS3RelTypeId, accessibleThroughImpalaRelTypeId]
+loggerApi.info('storageRelations--'+storageRelations)
+for(storageRelation in storageRelations) {
+	typeIds = []
+	def accesibleThroughRelations = findRelationsBySourceAndType(string2Uuid(eachOffering),string2Uuid(storageRelation))
+	loggerApi.info('accesibleThroughRelations--'+accesibleThroughRelations)
+	
+	if(!accesibleThroughRelations.isEmpty()) {
+
+		def eligibleStorage = accesibleThroughRelations.find{
+			def stUtilises = findRelationsBySourceAndType(it.getTarget().getId(),string2Uuid(techAssetUtilizesPipelineRelationTypeId))
+			loggerApi.info('stUtilises---'+stUtilises)
+			if(!stUtilises.isEmpty()) {
+				stUtilises.get(0).getTarget().getName() == currentPipeline
+			}
+		}
+
+		if(eligibleStorage != null) {
+			storageAssetId = eligibleStorage.getTarget().getId()
+			storageToOfferingRelationTypeId = eligibleStorage.getType().getId()
+			storageAssetName = eligibleStorage.getTarget().getName()
+			storagePlatformType = findAttribute(storageAssetId, [string2Uuid(storagePlatformAttrTypeId)])
+			loggerApi.info('storagePlatformType')
+		}
+	}
+}
+
+loggerApi.info('storagePlatformType'+storagePlatformType)
+
+/* Common attributes */
+def storageResourceUriValue = findAttribute(storageAssetId, [string2Uuid(storageResourceURIAttrTypeId)])
+loggerApi.info('storageResourceUriValue'+storageResourceUriValue)
+def storageFormatValue = findAttribute(storageAssetId, [string2Uuid(storageFormatAttrTypeId)])
+loggerApi.info('storageFormatValue'+storageFormatValue)
+def storageCompressionValue = findAttribute(storageAssetId, [string2Uuid(storageCompressionAttrTypeId)])
+loggerApi.info('storageCompressionValue'+storageCompressionValue)
+def resourceParametersValue = findAttribute(storageAssetId, [string2Uuid(resourceParametersAttrTypeId)])
+loggerApi.info('resourceParametersValue'+resourceParametersValue)
+def authenticationTypeValue = findAttribute(storageAssetId, [string2Uuid(authenticationTypeAttrTypeId)])
+loggerApi.info('authenticationTypeValue'+authenticationTypeValue)
+def userIdValue = findAttribute(storageAssetId, [string2Uuid(userIdAttrTypeId)])
+loggerApi.info('userIdValue'+userIdValue)
+def userIdPasswordValue = findAttribute(storageAssetId, [string2Uuid(userIdPasswordAttrTypeId)])
+loggerApi.info('userIdPasswordValue'+userIdPasswordValue)
+def customReaderClassValue = findAttribute(storageAssetId, [string2Uuid(customReaderClassAttrTypeId)])
+loggerApi.info('customReaderClassValue'+customReaderClassValue)
+def customReaderParametersValue = findAttribute(storageAssetId, [string2Uuid(customReaderParamsAttrTypeId)])
+loggerApi.info('customReaderParametersValue'+customReaderParametersValue)
+
+/* File attributes */
+def fileHeaderRowCountValue = findAttribute(storageAssetId, [string2Uuid(fileHeaderRowCountAttrTypeId)])
+if(fileHeaderRowCountValue != null) {
+	fileHeaderRowCountValue =String.valueOf(fileHeaderRowCountValue.intValue())
+	loggerApi.info('fileHeaderRowCountValue'+fileHeaderRowCountValue)
+}
+def fileTrailerSchemaCountValue = findAttribute(storageAssetId, [string2Uuid(fileTrailerSchemaAttrTypeId)])
+loggerApi.info('fileTrailerSchemaCountValue'+fileTrailerSchemaCountValue)
+def fileTrailerRecordCountCountValue = findAttribute(storageAssetId, [string2Uuid(fileTrailerRecordCountAttrTypeId)])
+if(fileTrailerRecordCountCountValue != null) {
+	fileTrailerRecordCountCountValue =String.valueOf(fileTrailerRecordCountCountValue.intValue())
+	loggerApi.info('fileTrailerRecordCountCountValue'+fileTrailerRecordCountCountValue)
+}
+def FileDelimeterValue = findAttribute(storageAssetId, [string2Uuid(fileDelimiterAttrTypeId)])
+loggerApi.info('FileDelimeterValue'+FileDelimeterValue)
+def FileFlagExtensionValue = findAttribute(storageAssetId, [string2Uuid(fileFlagExtensionAttrTypeId)])
+loggerApi.info('FileFlagExtensionValue'+FileFlagExtensionValue)
+
+/* S3 attributes */
+def awsAccountIdentifierValue = findAttribute(storageAssetId, [string2Uuid(awsAccountIdentifierAttrTypeId)])
+loggerApi.info('awsAccountIdentifierValue')
+def awsRegionValue = findAttribute(storageAssetId, [string2Uuid(awsRegionAttrTypeId)])
+loggerApi.info('awsRegionValue')
+def awsDefaultProfileValue = findAttribute(storageAssetId, [string2Uuid(awsDefaultProfileAttrTypeId)])
+loggerApi.info('awsDefaultProfileValue')
+def kmsARNValue = findAttribute(storageAssetId, [string2Uuid(kmsARNAttrTypeId)])
+loggerApi.info('kmsARNValue')
+def bucketARNValue = findAttribute(storageAssetId, [string2Uuid(bucketARNAttrTypeId)])
+loggerApi.info('bucketARNValue')
+def bucketPrefixValue = findAttribute(storageAssetId, [string2Uuid(bucketPrefixAttrTypeId)])
+loggerApi.info('bucketPrefixValue')
+def bucketNameValue = findAttribute(storageAssetId, [string2Uuid(bucketNameAttrTypeId)])
+loggerApi.info('bucketNameValue')
+
+/* Hadoop attributes */
+def hadoopConfigLocationValue = findAttribute(storageAssetId, [string2Uuid(hadoopConfigLocAttrTypeId)])
+loggerApi.info('hadoopConfigLocationValue')
+
+/* Impala attributes */
+def impalaConfigLocationValue = findAttribute(storageAssetId, [string2Uuid(impalaConfigLocAttrTypeId)])
+loggerApi.info('impalaConfigLocationValue')
+
+/* Database attributes */
+def dataIngestionStrategyValue = findAttribute(storageAssetId, [string2Uuid(databaseDataIngestionStrategyAttrTypeId)])
+loggerApi.info('dataIngestionStrategyValue')
+def dataRetrievalQueryParametersValue = findAttribute(storageAssetId, [string2Uuid(databaseDataRetrievalQueryParametersAttrTypeId)])
+loggerApi.info('dataRetrievalQueryParametersValue')
+def dataRetrievalPartitionValue = findAttribute(storageAssetId, [string2Uuid(databaseDataRetrivalPartitionAttrTypeId)])
+loggerApi.info('dataRetrievalPartitionValue')
+def dataRetrievalQueryValue = findAttribute(storageAssetId, [string2Uuid(databaseDataRetrievalQueryAttrTypeId)])
+loggerApi.info('dataRetrievalQueryValue')
+
+def dbFetchSizeValue = findAttribute(storageAssetId, [string2Uuid(fetchSizeAttrTypeId)])
+if(dbFetchSizeValue != null) {
+
+	dbFetchSizeValue =String.valueOf(dbFetchSizeValue.intValue())
+	loggerApi.info('dbFetchSizeValue')
+}
+
+
+
+execution.setVariable('storageAssetId',storageAssetId)
+execution.setVariable('storageAssetName',storageAssetName)
+execution.setVariable('storagePlatformType',storagePlatformType)
+execution.setVariable('storageResourceUriValue',storageResourceUriValue)
+execution.setVariable('storageFormatValue',storageFormatValue)
+execution.setVariable('storageCompressionValue',storageCompressionValue)
+execution.setVariable('resourceParametersValue',resourceParametersValue)
+execution.setVariable('authenticationTypeValue',authenticationTypeValue.join(","))
+execution.setVariable('userIdValue',userIdValue)
+execution.setVariable('userIdPasswordValue',userIdPasswordValue)
+execution.setVariable('customReaderClassValue',customReaderClassValue)
+execution.setVariable('customReaderParametersValue',customReaderParametersValue)
+execution.setVariable('fileHeaderRowCountValue',fileHeaderRowCountValue)
+//execution.setVariable('fileFooterRowCountValue',String.valueOf(fileFooterRowCountValue.intValue()))
+execution.setVariable('fileTrailerSchemaCountValue',fileTrailerSchemaCountValue)
+execution.setVariable('fileTrailerRecordCountCountValue',fileTrailerRecordCountCountValue)
+execution.setVariable('FileDelimeterValue',FileDelimeterValue)
+execution.setVariable('FileFlagExtensionValue',FileFlagExtensionValue)
+execution.setVariable('awsAccountIdentifierValue',awsAccountIdentifierValue)
+execution.setVariable('awsRegionValue',awsRegionValue)
+execution.setVariable('awsDefaultProfileValue',awsDefaultProfileValue)
+execution.setVariable('kmsARNValue',kmsARNValue)
+execution.setVariable('bucketARNValue',bucketARNValue)
+execution.setVariable('bucketPrefixValue',bucketPrefixValue)
+execution.setVariable('bucketNameValue',bucketNameValue)
+execution.setVariable('hadoopConfigLocationValue',hadoopConfigLocationValue)
+execution.setVariable('impalaConfigLocationValue',impalaConfigLocationValue)
+execution.setVariable('dataIngestionStrategyValue',dataIngestionStrategyValue)
+execution.setVariable('dataRetrievalQueryParametersValue',dataRetrievalQueryParametersValue)
+execution.setVariable('dataRetrievalPartitionValue',dataRetrievalPartitionValue)
+execution.setVariable('dataRetrievalQueryValue',dataRetrievalQueryValue)
+execution.setVariable('dbFetchSizeValue',dbFetchSizeValue)
+execution.setVariable('storageToOfferingRelationTypeId',storageToOfferingRelationTypeId)]]></script>
+      </scriptTask>
+      <sequenceFlow id="flow9" sourceRef="scripttask4" targetRef="exclusivegateway2"></sequenceFlow>
+      <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway"></exclusiveGateway>
+      <sequenceFlow id="flow10" name="File" sourceRef="exclusivegateway2" targetRef="usertask2">
+        <conditionExpression xsi:type="tFormalExpression"><![CDATA[${storagePlatformType == 'FILESYSTEM'}]]></conditionExpression>
+      </sequenceFlow>
+      <sequenceFlow id="flow11" name="S3" sourceRef="exclusivegateway2" targetRef="usertask3">
+        <conditionExpression xsi:type="tFormalExpression"><![CDATA[${storagePlatformType == 'S3'}]]></conditionExpression>
+      </sequenceFlow>
+      <sequenceFlow id="flow12" name="Database" sourceRef="exclusivegateway2" targetRef="usertask4">
+        <conditionExpression xsi:type="tFormalExpression"><![CDATA[${storagePlatformType == 'DATABASE'}]]></conditionExpression>
+      </sequenceFlow>
+      <sequenceFlow id="flow13" name="HDFS" sourceRef="exclusivegateway2" targetRef="usertask5">
+        <conditionExpression xsi:type="tFormalExpression"><![CDATA[${storagePlatformType == 'HDFS'}]]></conditionExpression>
+      </sequenceFlow>
+      <sequenceFlow id="flow14" name="Impala" sourceRef="exclusivegateway2" targetRef="usertask6">
+        <conditionExpression xsi:type="tFormalExpression"><![CDATA[${storagePlatformType == 'IMPALA'}]]></conditionExpression>
+      </sequenceFlow>
+      <userTask id="usertask2" name="File System Metadata Form" activiti:candidateUsers="user(${startUser})">
+        <documentation>Please provide all the required metadata for Technology Storage Platform - FILESYSTEM</documentation>
+        <extensionElements>
+          <activiti:formProperty id="storageResourceURI" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Storage Resource URI &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageResourceColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;storageResource()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageResourceHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Storage Resource URI &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function storageResource() {var y = document.getElementsByClassName(&quot;storageResourceColor&quot;);var x = document.getElementsByClassName(&quot;storageResourceHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}setTimeout(function() {for (var i = 0;i &lt; document.getElementsByName(&quot;storageResourceURI&quot;).length;i++) {var x = document.getElementsByName(&quot;storageResourceURI&quot;)[i].parentNode;var formValue = x.parentNode;var formWrapper = formValue.parentNode;var modalContent = formWrapper.parentNode;var modalDialog = modalContent.parentNode;modalDialog.classList.add(&quot;custom-filesystem-modal&quot;);}}, 0);&lt;/script&gt;&lt;style&gt; .ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.modalwindow.custom-filesystem-modal {margin-left: -45% !important;width: 90% !important;min-height: 680px !important;height: auto !important;top: 40px !important;}.form-wrapper {max-height: fit-content;}&lt;/style&gt;" type="string" default="${storageResourceUriValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="storageFormat" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Storage Format &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageFormatColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;storageFormat()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageFormatHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Storage Format &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function storageFormat() {var y = document.getElementsByClassName(&quot;storageFormatColor&quot;);var x = document.getElementsByClassName(&quot;storageFormatHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="dynamicEnum" default="${storageFormatValue}" required="true">
+            <activiti:value id="dynamicValuesExpression" name="${storageFormatValuesMap}"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="storageCompression" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Storage Compression &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageCompressionColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;storageCompression()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageCompressionHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Storage Compression &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function storageCompression() {var y = document.getElementsByClassName(&quot;storageCompressionColor&quot;);var x = document.getElementsByClassName(&quot;storageCompressionHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="dynamicEnum" default="${storageCompressionValue}">
+            <activiti:value id="dynamicValuesExpression" name="${storageCompressionValuesMap}"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="fileDelimiter" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; File Delimiter &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;fileDelimiterColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;fileDelimiter()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;fileDelimiterHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide File Delimiter &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function fileDelimiter() {var y = document.getElementsByClassName(&quot;fileDelimiterColor&quot;);var x = document.getElementsByClassName(&quot;fileDelimiterHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${FileDelimeterValue}"></activiti:formProperty>
+          <activiti:formProperty id="fileFlagExtension" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; File Flag Extension &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;fileFlagExtensionColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;fileFlagExtension()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;fileFlagExtensionHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide File Flag Extension &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function fileFlagExtension() {var y = document.getElementsByClassName(&quot;fileFlagExtensionColor&quot;);var x = document.getElementsByClassName(&quot;fileFlagExtensionHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${FileFlagExtensionValue}"></activiti:formProperty>
+          <activiti:formProperty id="authenticationType" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Authentication Type &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;authenticationColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;authentication()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;authenticationHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Authentication Type &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function authentication() {var y = document.getElementsByClassName(&quot;authenticationColor&quot;);var x = document.getElementsByClassName(&quot;authenticationHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="dynamicEnum" default="${authenticationTypeValue}" required="true">
+            <activiti:value id="dynamicValuesExpression" name="${AuthenticationTypeValuesMap}"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="userId" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; User Id &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;userId()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide User Id &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function userId() {var y = document.getElementsByClassName(&quot;userIdColor&quot;);var x = document.getElementsByClassName(&quot;userIdHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${userIdValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="userIdPasswordVaultKey" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; User Id Password Vault Key &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdPwdColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;userIdPwd()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdPwdHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide User Id Password Vault Key &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function userIdPwd() {var y = document.getElementsByClassName(&quot;userIdPwdColor&quot;);var x = document.getElementsByClassName(&quot;userIdPwdHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${userIdPasswordValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="resourceParameters" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Resource Parameter(s) &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;resourceParameterColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;resourceParameter()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;resourceParameterHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt; Provide Resource Parameter(s) &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function resourceParameter() {var y = document.getElementsByClassName(&quot;resourceParameterColor&quot;);var x = document.getElementsByClassName(&quot;resourceParameterHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${resourceParametersValue}"></activiti:formProperty>
+          <activiti:formProperty id="customReaderClass" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Custom Reader Class &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;customReader()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Custom Reader Class &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function customReader() {var y = document.getElementsByClassName(&quot;customReaderColor&quot;);var x = document.getElementsByClassName(&quot;customReaderHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${customReaderClassValue}"></activiti:formProperty>
+          <activiti:formProperty id="customReaderParameter" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Custom Reader Parameters &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderParamsColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;customReaderParams()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderParamsHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Custom Reader Parameters &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function customReaderParams() {var y = document.getElementsByClassName(&quot;customReaderParamsColor&quot;);var x = document.getElementsByClassName(&quot;customReaderParamsHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${customReaderParametersValue}"></activiti:formProperty>
+          <activiti:formProperty id="fileHeaderRowCount" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; File Header Row Count &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;fileHeaderColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;fileHeader()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;fileHeaderHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide File Header Row Count &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function fileHeader() {var y = document.getElementsByClassName(&quot;fileHeaderColor&quot;);var x = document.getElementsByClassName(&quot;fileHeaderHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${fileHeaderRowCountValue}">
+            <activiti:value id="helpText" name="&lt;b&gt;Only Numeric Values are allowed&lt;/b&gt;"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="fileTrailerRecordCount" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; File Trailer Record Count &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;fileFooterColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;fileFooter()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;fileFooterHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide File Trailer Record Count &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function fileFooter() {var y = document.getElementsByClassName(&quot;fileFooterColor&quot;);var x = document.getElementsByClassName(&quot;fileFooterHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${fileTrailerRecordCountCountValue}">
+            <activiti:value id="helpText" name="&lt;b&gt;Only Numeric Values are allowed&lt;/b&gt;"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="fileTrailerSchema" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; File Trailer Schema &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;fileTrailerColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;fileTrailer()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;fileTrailerHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide File Trailer Schema &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function fileTrailer() {var y = document.getElementsByClassName(&quot;fileTrailerColor&quot;);var x = document.getElementsByClassName(&quot;fileTrailerHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${fileTrailerSchemaCountValue}"></activiti:formProperty>
+          <activiti:formProperty id="submit" name="Submit" type="button" default="false"></activiti:formProperty>
+        </extensionElements>
+      </userTask>
+      <sequenceFlow id="flow15" sourceRef="usertask2" targetRef="scripttask5"></sequenceFlow>
+      <userTask id="usertask3" name="S3 Metadata Form" activiti:candidateUsers="user(${startUser})">
+        <documentation>Please provide all the required metadata for Technology Storage Platform - S3</documentation>
+        <extensionElements>
+          <activiti:formProperty id="storageResourceURI" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Storage Resource URI &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageResourceColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;storageResource()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageResourceHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Storage Resource URI &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function storageResource() {var y = document.getElementsByClassName(&quot;storageResourceColor&quot;);var x = document.getElementsByClassName(&quot;storageResourceHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}setTimeout(function() {for (var i = 0;i &lt; document.getElementsByName(&quot;storageResourceURI&quot;).length;i++) {var x = document.getElementsByName(&quot;storageResourceURI&quot;)[i].parentNode;var formValue = x.parentNode;var formWrapper = formValue.parentNode;var modalContent = formWrapper.parentNode;var modalDialog = modalContent.parentNode;modalDialog.classList.add(&quot;custom-sresuri-modal&quot;);}}, 0);&lt;/script&gt;&lt;style&gt; .ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.modalwindow.custom-sresuri-modal {margin-left: -45% !important;width: 90% !important;min-height: 680px !important;height: auto !important;top: 40px !important;}.form-wrapper {max-height: fit-content;}&lt;/style&gt;" type="string" default="${storageResourceUriValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="storageFormat" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Storage Format &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageFormatColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;storageFormat()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageFormatHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Storage Format &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function storageFormat() {var y = document.getElementsByClassName(&quot;storageFormatColor&quot;);var x = document.getElementsByClassName(&quot;storageFormatHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="dynamicEnum" default="${storageFormatValue}" required="true">
+            <activiti:value id="dynamicValuesExpression" name="${storageFormatValuesMap}"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="bucketARN" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Bucket ARN &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;bucketARNColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;bucketARN()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;bucketARNHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Bucket ARN &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function bucketARN() {var y = document.getElementsByClassName(&quot;bucketARNColor&quot;);var x = document.getElementsByClassName(&quot;bucketARNHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${bucketARNValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="awsRegion" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; AWS Region &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;awsRegionColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;awsRegion()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;awsRegionHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide AWS Region &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function awsRegion() {var y = document.getElementsByClassName(&quot;awsRegionColor&quot;);var x = document.getElementsByClassName(&quot;awsRegionHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${awsRegionValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="storageCompression" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Storage Compression &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageCompressionColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;storageCompression()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageCompressionHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Storage Compression &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function storageCompression() {var y = document.getElementsByClassName(&quot;storageCompressionColor&quot;);var x = document.getElementsByClassName(&quot;storageCompressionHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="dynamicEnum" default="${storageCompressionValue}">
+            <activiti:value id="dynamicValuesExpression" name="${storageCompressionValuesMap}"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="awsAccountIdentifier" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; AWS Account Identifier &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;awsAccColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;awsAcc()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;awsAccHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide AWS Account Identifier &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function awsAcc() {var y = document.getElementsByClassName(&quot;awsAccColor&quot;);var x = document.getElementsByClassName(&quot;awsAccHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${awsAccountIdentifierValue}"></activiti:formProperty>
+          <activiti:formProperty id="kmsARN" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; KMS ARN &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;kmsARNColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;kmsARN()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;kmsARNHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide KMS ARN &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function kmsARN() {var y = document.getElementsByClassName(&quot;kmsARNColor&quot;);var x = document.getElementsByClassName(&quot;kmsARNHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${kmsARNValue}"></activiti:formProperty>
+          <activiti:formProperty id="bucketPrefix" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Bucket Prefix &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;bucketPrefixColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;bucketPrefix()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;bucketPrefixHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Bucket Prefix &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function bucketPrefix() {var y = document.getElementsByClassName(&quot;bucketPrefixColor&quot;);var x = document.getElementsByClassName(&quot;bucketPrefixHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${bucketPrefixValue}"></activiti:formProperty>
+          <activiti:formProperty id="bucketName" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Bucket Name &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;bucketNameColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;bucketName()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;bucketNameHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Bucket Name &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function bucketName() {var y = document.getElementsByClassName(&quot;bucketNameColor&quot;);var x = document.getElementsByClassName(&quot;bucketNameHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${bucketNameValue}"></activiti:formProperty>
+          <activiti:formProperty id="authenticationType" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Authentication Type &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;authenticationColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;authentication()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;authenticationHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Authentication Type &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function authentication() {var y = document.getElementsByClassName(&quot;authenticationColor&quot;);var x = document.getElementsByClassName(&quot;authenticationHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="dynamicEnum" default="${authenticationTypeValue}">
+            <activiti:value id="dynamicValuesExpression" name="${AuthenticationTypeValuesMap}"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="userId" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; User Id &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;userId()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide User Id &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function userId() {var y = document.getElementsByClassName(&quot;userIdColor&quot;);var x = document.getElementsByClassName(&quot;userIdHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${userIdValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="userIdPasswordVaultKey" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; User Id Password Vault Key &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdPwdColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;userIdPwd()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdPwdHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide User Id Password Vault Key &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function userIdPwd() {var y = document.getElementsByClassName(&quot;userIdPwdColor&quot;);var x = document.getElementsByClassName(&quot;userIdPwdHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${userIdPasswordValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="resourceParameters" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Resource Parameter(s) &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;resourceParameterColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;resourceParameter()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;resourceParameterHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt; Provide Resource Parameter(s) &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function resourceParameter() {var y = document.getElementsByClassName(&quot;resourceParameterColor&quot;);var x = document.getElementsByClassName(&quot;resourceParameterHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${resourceParametersValue}"></activiti:formProperty>
+          <activiti:formProperty id="awsDefaultProfile" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; AWS Default Profile &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;awsDefaultColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;awsDefault()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;awsDefaultHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide AWS Default Profile &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function awsDefault() {var y = document.getElementsByClassName(&quot;awsDefaultColor&quot;);var x = document.getElementsByClassName(&quot;awsDefaultHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${awsDefaultProfileValue}"></activiti:formProperty>
+          <activiti:formProperty id="customReaderClass" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Custom Reader Class &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;customReader()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Custom Reader Class &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function customReader() {var y = document.getElementsByClassName(&quot;customReaderColor&quot;);var x = document.getElementsByClassName(&quot;customReaderHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${customReaderClassValue}"></activiti:formProperty>
+          <activiti:formProperty id="customReaderParameter" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Custom Reader Parameters &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderParamsColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;customReaderParams()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderParamsHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Custom Reader Parameters &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function customReaderParams() {var y = document.getElementsByClassName(&quot;customReaderParamsColor&quot;);var x = document.getElementsByClassName(&quot;customReaderParamsHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${customReaderParametersValue}"></activiti:formProperty>
+          <activiti:formProperty id="submit" name="Submit" type="button" default="false"></activiti:formProperty>
+        </extensionElements>
+      </userTask>
+      <sequenceFlow id="flow18" sourceRef="usertask3" targetRef="scripttask5"></sequenceFlow>
+      <userTask id="usertask4" name="Database Metadata Form" activiti:candidateUsers="user(${startUser})">
+        <documentation>Please provide all the required metadata for Technology Storage Platform - DATABASE</documentation>
+        <extensionElements>
+          <activiti:formProperty id="storageResourceURI" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Storage Resource URI &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageResourceColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;storageResource()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageResourceHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Storage Resource URI &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function storageResource() {var y = document.getElementsByClassName(&quot;storageResourceColor&quot;);var x = document.getElementsByClassName(&quot;storageResourceHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}setTimeout(function() {for (var i = 0;i &lt; document.getElementsByName(&quot;storageResourceURI&quot;).length;i++) {var x = document.getElementsByName(&quot;storageResourceURI&quot;)[i].parentNode;var formValue = x.parentNode;var formWrapper = formValue.parentNode;var modalContent = formWrapper.parentNode;var modalDialog = modalContent.parentNode;modalDialog.classList.add(&quot;custom-database-modal&quot;);}}, 0);&lt;/script&gt;&lt;style&gt; .ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.modalwindow.custom-database-modal {margin-left: -45% !important;width: 90% !important;min-height: 680px !important;height: auto !important;top: 40px !important;}.form-wrapper {max-height: fit-content;}&lt;/style&gt;" type="string" default="${storageResourceUriValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="databaseDataRetrievalQuery" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Database Data Retrieval Query &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;dataRetrievalColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;dataRetrieval()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;dataRetrievalHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Data Retrieval Query &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function dataRetrieval() {var y = document.getElementsByClassName(&quot;dataRetrievalColor&quot;);var x = document.getElementsByClassName(&quot;dataRetrievalHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${dataRetrievalQueryValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="dataIngestionStrategy" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Data Ingestion Strategy &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;dataIngStrategyColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;dataIngStrategy()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;dataIngStrategyHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Data Ingestion strategy &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function dataIngStrategy() {var y = document.getElementsByClassName(&quot;dataIngStrategyColor&quot;);var x = document.getElementsByClassName(&quot;dataIngStrategyHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="dynamicEnum" default="${dataIngestionStrategyValue}">
+            <activiti:value id="dynamicValuesExpression" name="${databaseIngValuesMap}"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="fetchSize" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Fetch Size &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;fetchSizeColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;fetchSize()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;fetchSizeHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Fetch Size &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function fetchSize() {var y = document.getElementsByClassName(&quot;fetchSizeColor&quot;);var x = document.getElementsByClassName(&quot;fetchSizeHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${dbFetchSizeValue}">
+            <activiti:value id="helpText" name="&lt;b&gt;Only Numeric Values are allowed&lt;/b&gt;"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="authenticationType" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Authentication Type &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;authenticationColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;authentication()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;authenticationHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Authentication Type &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function authentication() {var y = document.getElementsByClassName(&quot;authenticationColor&quot;);var x = document.getElementsByClassName(&quot;authenticationHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="dynamicEnum" default="${authenticationTypeValue}" required="true">
+            <activiti:value id="dynamicValuesExpression" name="${AuthenticationTypeValuesMap}"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="userId" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; User Id &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;userId()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide User Id &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function userId() {var y = document.getElementsByClassName(&quot;userIdColor&quot;);var x = document.getElementsByClassName(&quot;userIdHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${userIdValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="userIdPasswordVaultKey" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; User Id Password Vault Key &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdPwdColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;userIdPwd()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdPwdHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide User Id Password Vault Key &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function userIdPwd() {var y = document.getElementsByClassName(&quot;userIdPwdColor&quot;);var x = document.getElementsByClassName(&quot;userIdPwdHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${userIdPasswordValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="resourceParameters" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Resource Parameter(s) &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;resourceParameterColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;resourceParameter()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;resourceParameterHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt; Provide Resource Parameter(s) &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function resourceParameter() {var y = document.getElementsByClassName(&quot;resourceParameterColor&quot;);var x = document.getElementsByClassName(&quot;resourceParameterHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${resourceParametersValue}"></activiti:formProperty>
+          <activiti:formProperty id="databaseDataRetrievalQueryParameters" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Database Data Retreival Query Parameters &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;dataRetrievalQryColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;dataRetrievalParameter()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;dataRetrievalQryHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Database Data Retrieval Query Parameters &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function dataRetrievalParameter() {var y = document.getElementsByClassName(&quot;dataRetrievalQryColor&quot;);var x = document.getElementsByClassName(&quot;dataRetrievalQryHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${dataRetrievalQueryParametersValue}"></activiti:formProperty>
+          <activiti:formProperty id="databaseDataRetrievalPartition" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Database Data Retreival Partition &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;dataRetrievalPartitionColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;dataRetrievalPartition()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;dataRetrievalPartitionHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Database Data Retreival Partition &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function dataRetrievalPartition() {var y = document.getElementsByClassName(&quot;dataRetrievalPartitionColor&quot;);var x = document.getElementsByClassName(&quot;dataRetrievalPartitionHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${dataRetrievalPartitionValue}"></activiti:formProperty>
+          <activiti:formProperty id="customReaderClass" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Custom Reader Class &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;customReader()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Custom Reader Class &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function customReader() {var y = document.getElementsByClassName(&quot;customReaderColor&quot;);var x = document.getElementsByClassName(&quot;customReaderHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${customReaderClassValue}"></activiti:formProperty>
+          <activiti:formProperty id="customReaderParameter" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Custom Reader Parameters &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderParamsColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;customReaderParams()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderParamsHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Custom Reader Parameters &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function customReaderParams() {var y = document.getElementsByClassName(&quot;customReaderParamsColor&quot;);var x = document.getElementsByClassName(&quot;customReaderParamsHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${customReaderParametersValue}"></activiti:formProperty>
+          <activiti:formProperty id="submit" name="Submit" type="button" default="false"></activiti:formProperty>
+        </extensionElements>
+      </userTask>
+      <sequenceFlow id="flow19" sourceRef="usertask4" targetRef="scripttask5"></sequenceFlow>
+      <userTask id="usertask5" name="Hadoop System Metadata Form" activiti:candidateUsers="user(${startUser})">
+        <documentation>Please provide all the required metadata for Technology Storage Platform - HDFS</documentation>
+        <extensionElements>
+          <activiti:formProperty id="storageResourceURI" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Storage Resource URI &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageResourceColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;storageResource()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageResourceHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Storage Resource URI &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function storageResource() {var y = document.getElementsByClassName(&quot;storageResourceColor&quot;);var x = document.getElementsByClassName(&quot;storageResourceHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}setTimeout(function() {for (var i = 0;i &lt; document.getElementsByName(&quot;storageResourceURI&quot;).length;i++) {var x = document.getElementsByName(&quot;storageResourceURI&quot;)[i].parentNode;var formValue = x.parentNode;var formWrapper = formValue.parentNode;var modalContent = formWrapper.parentNode;var modalDialog = modalContent.parentNode;modalDialog.classList.add(&quot;custom-hadoop-modal&quot;);}}, 0);&lt;/script&gt;&lt;style&gt; .ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.modalwindow.custom-hadoop-modal {margin-left: -45% !important;width: 90% !important;min-height: 680px !important;height: auto !important;top: 40px !important;}.form-wrapper {max-height: fit-content;}&lt;/style&gt;" type="string" default="${storageResourceUriValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="storageFormat" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Storage Format &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageFormatColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;storageFormat()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageFormatHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Storage Format &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function storageFormat() {var y = document.getElementsByClassName(&quot;storageFormatColor&quot;);var x = document.getElementsByClassName(&quot;storageFormatHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="dynamicEnum" default="${storageFormatValue}" required="true">
+            <activiti:value id="dynamicValuesExpression" name="${storageFormatValuesMap}"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="storageCompression" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Storage Compression &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageCompressionColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;storageCompression()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageCompressionHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Storage Compression &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function storageCompression() {var y = document.getElementsByClassName(&quot;storageCompressionColor&quot;);var x = document.getElementsByClassName(&quot;storageCompressionHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="dynamicEnum" default="${storageCompressionValue}">
+            <activiti:value id="dynamicValuesExpression" name="${storageCompressionValuesMap}"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="hadoopConfigLocation" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Hadoop Config Location &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;hadoopConfigColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;hadoopConfig()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;hadoopConfigHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Hadoop Config Location &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function hadoopConfig() {var y = document.getElementsByClassName(&quot;hadoopConfigColor&quot;);var x = document.getElementsByClassName(&quot;hadoopConfigHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${hadoopConfigLocationValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="authenticationType" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Authentication Type &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;authenticationColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;authentication()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;authenticationHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Authentication Type &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function authentication() {var y = document.getElementsByClassName(&quot;authenticationColor&quot;);var x = document.getElementsByClassName(&quot;authenticationHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="dynamicEnum" default="${authenticationTypeValue}" required="true">
+            <activiti:value id="dynamicValuesExpression" name="${AuthenticationTypeValuesMap}"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="userId" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; User Id &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;userId()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide User Id &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function userId() {var y = document.getElementsByClassName(&quot;userIdColor&quot;);var x = document.getElementsByClassName(&quot;userIdHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${userIdValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="userIdPasswordVaultKey" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; User Id Password Vault Key &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdPwdColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;userIdPwd()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdPwdHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide User Id Password Vault Key &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function userIdPwd() {var y = document.getElementsByClassName(&quot;userIdPwdColor&quot;);var x = document.getElementsByClassName(&quot;userIdPwdHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${userIdPasswordValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="resourceParameters" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Resource Parameter(s) &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;resourceParameterColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;resourceParameter()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;resourceParameterHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt; Provide Resource Parameter(s) &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function resourceParameter() {var y = document.getElementsByClassName(&quot;resourceParameterColor&quot;);var x = document.getElementsByClassName(&quot;resourceParameterHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${resourceParametersValue}"></activiti:formProperty>
+          <activiti:formProperty id="customReaderClass" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Custom Reader Class &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;customReader()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Custom Reader Class &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function customReader() {var y = document.getElementsByClassName(&quot;customReaderColor&quot;);var x = document.getElementsByClassName(&quot;customReaderHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${customReaderClassValue}"></activiti:formProperty>
+          <activiti:formProperty id="customReaderParameter" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Custom Reader Parameters &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderParamsColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;customReaderParams()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderParamsHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Custom Reader Parameters &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function customReaderParams() {var y = document.getElementsByClassName(&quot;customReaderParamsColor&quot;);var x = document.getElementsByClassName(&quot;customReaderParamsHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${customReaderParametersValue}"></activiti:formProperty>
+          <activiti:formProperty id="submit" name="Submit" type="button" default="false"></activiti:formProperty>
+        </extensionElements>
+      </userTask>
+      <sequenceFlow id="flow17" sourceRef="usertask5" targetRef="scripttask5"></sequenceFlow>
+      <userTask id="usertask6" name="Impala Metadata Form" activiti:candidateUsers="user(${startUser})">
+        <documentation>Please provide all the required metadata for Technology Storage Platform - IMPALA</documentation>
+        <extensionElements>
+          <activiti:formProperty id="storageResourceURI" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Storage Resource URI &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageResourceColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;storageResource()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageResourceHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Storage Resource URI &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function storageResource() {var y = document.getElementsByClassName(&quot;storageResourceColor&quot;);var x = document.getElementsByClassName(&quot;storageResourceHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}setTimeout(function() {for (var i = 0;i &lt; document.getElementsByName(&quot;storageResourceURI&quot;).length;i++) {var x = document.getElementsByName(&quot;storageResourceURI&quot;)[i].parentNode;var formValue = x.parentNode;var formWrapper = formValue.parentNode;var modalContent = formWrapper.parentNode;var modalDialog = modalContent.parentNode;modalDialog.classList.add(&quot;custom-hadoop-modal&quot;);}}, 0);&lt;/script&gt;&lt;style&gt; .ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.modalwindow.custom-hadoop-modal {margin-left: -45% !important;width: 90% !important;min-height: 680px !important;height: auto !important;top: 40px !important;}.form-wrapper {max-height: fit-content;}&lt;/style&gt;" type="string" default="${storageResourceUriValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="storageFormat" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Storage Format &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageFormatColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;storageFormat()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageFormatHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Storage Format &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function storageFormat() {var y = document.getElementsByClassName(&quot;storageFormatColor&quot;);var x = document.getElementsByClassName(&quot;storageFormatHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="dynamicEnum" default="${storageFormatValue}" required="true">
+            <activiti:value id="dynamicValuesExpression" name="${storageFormatValuesMap}"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="storageCompression" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Storage Compression &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageCompressionColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;storageCompression()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;storageCompressionHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Storage Compression &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function storageCompression() {var y = document.getElementsByClassName(&quot;storageCompressionColor&quot;);var x = document.getElementsByClassName(&quot;storageCompressionHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="dynamicEnum" default="${storageCompressionValue}">
+            <activiti:value id="dynamicValuesExpression" name="${storageCompressionValuesMap}"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="impalaConfigLocation" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; IMPALA Config Location &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;hadoopConfigColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;hadoopConfig()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;hadoopConfigHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Hadoop Config Location &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function hadoopConfig() {var y = document.getElementsByClassName(&quot;hadoopConfigColor&quot;);var x = document.getElementsByClassName(&quot;hadoopConfigHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${impalaConfigLocationValue}"></activiti:formProperty>
+          <activiti:formProperty id="authenticationType" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Authentication Type &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;authenticationColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;authentication()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;authenticationHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Authentication Type &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function authentication() {var y = document.getElementsByClassName(&quot;authenticationColor&quot;);var x = document.getElementsByClassName(&quot;authenticationHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="dynamicEnum" default="${authenticationTypeValue}" required="true">
+            <activiti:value id="dynamicValuesExpression" name="${AuthenticationTypeValuesMap}"></activiti:value>
+          </activiti:formProperty>
+          <activiti:formProperty id="userId" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; User Id &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;userId()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide User Id &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function userId() {var y = document.getElementsByClassName(&quot;userIdColor&quot;);var x = document.getElementsByClassName(&quot;userIdHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${userIdValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="userIdPasswordVaultKey" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; User Id Password Vault Key &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdPwdColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;userIdPwd()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;userIdPwdHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide User Id Password Vault Key &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function userIdPwd() {var y = document.getElementsByClassName(&quot;userIdPwdColor&quot;);var x = document.getElementsByClassName(&quot;userIdPwdHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${userIdPasswordValue}" required="true"></activiti:formProperty>
+          <activiti:formProperty id="resourceParameters" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Resource Parameter(s) &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;resourceParameterColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;resourceParameter()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;resourceParameterHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt; Provide Resource Parameter(s) &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function resourceParameter() {var y = document.getElementsByClassName(&quot;resourceParameterColor&quot;);var x = document.getElementsByClassName(&quot;resourceParameterHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${resourceParametersValue}"></activiti:formProperty>
+          <activiti:formProperty id="customReaderClass" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Custom Reader Class &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;customReader()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Custom Reader Class &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function customReader() {var y = document.getElementsByClassName(&quot;customReaderColor&quot;);var x = document.getElementsByClassName(&quot;customReaderHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${customReaderClassValue}"></activiti:formProperty>
+          <activiti:formProperty id="customReaderParameter" name="&lt;div style=&quot;overflow: hidden;&quot;&gt;&lt;p style=&quot;float:left;&quot;&gt; Custom Reader Parameters &lt;b style=&quot;color:red;&quot;&gt;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderParamsColor&quot; style=&quot;float:left;padding: 0 1%;cursor:pointer&quot; onclick=&quot;customReaderParams()&quot;&gt;&lt;b style=&quot;position:relative;float:left;font-size:18px;&quot;&gt;&amp;#9432;&lt;/b&gt;&lt;/p&gt;&lt;p class=&quot;customReaderParamsHelpText&quot; style=&quot;display: none;float:left;background-color:#4CAF50;color:white;border-radius:8px 8px 8px 0px;padding:5px;position:relative;bottom:10px&quot;&gt;Provide Custom Reader Parameters &lt;/p&gt;&lt;/div&gt;&lt;script&gt; function customReaderParams() {var y = document.getElementsByClassName(&quot;customReaderParamsColor&quot;);var x = document.getElementsByClassName(&quot;customReaderParamsHelpText&quot;);for (var i = 0;i &lt; x.length;i++) {if (x[i].style.display === &quot;none&quot;) {x[i].style.display = &quot;block&quot;;y[i].style.color = '#008902';}else {x[i].style.display = &quot;none&quot;;y[i].style.color = '#8C8C8C';}}}&lt;/script&gt;" type="string" default="${customReaderParametersValue}"></activiti:formProperty>
+          <activiti:formProperty id="submit" name="Submit" type="button" default="false"></activiti:formProperty>
+        </extensionElements>
+      </userTask>
+      <sequenceFlow id="flow16" sourceRef="usertask6" targetRef="scripttask5"></sequenceFlow>
+      <scriptTask id="scripttask5" name="Create SIT Storage" scriptFormat="groovy" activiti:autoStoreVariables="false">
+        <script><![CDATA[import com.collibra.dgc.core.api.dto.MatchMode
+
+
+/* Adding new storage */
+def everestStorageDomain
+def enterPriseStorageDomain
+def updatedFullName
+def updatedDisplayName
+def newSTDomainId
+def currentSTPipelineId
+def currentSTPipeline
+def tsPromotedPipelineId
+def tsPromotedPipelineName
+def tsPromoteStatus
+def storageName = assetApi.getAsset(storageAssetId).getName()
+def storageDisplayName = assetApi.getAsset(storageAssetId).getDisplayName()
+def storageTypeId = assetApi.getAsset(storageAssetId).getType().getId()
+def storageDomainId =  assetApi.getAsset(storageAssetId).getDomain().getId()
+def storageDomainName =  assetApi.getAsset(storageAssetId).getDomain().getName()
+def storageDomainTypeId=domainApi.getDomain(storageDomainId).getType().getId()
+
+def storageCommunityId=domainApi.getDomain(storageDomainId).getCommunity().getId()
+def currentOfferingName = assetApi.getAsset(string2Uuid(eachOffering)).getName()
+def currentOfferingDisplayName = assetApi.getAsset(string2Uuid(eachOffering)).getDisplayName()
+loggerApi.info('currentOfferingName--'+currentOfferingName)
+loggerApi.info("storagePlatformType==>"+storagePlatformType)
+loggerApi.info('storageCommunityId---'+storageCommunityId)
+loggerApi.info('storageDomainName---'+storageDomainName)
+def findStorageRegistryDomains
+findStorageRegistryDomains = findDomain(storageDomainName, MatchMode.EXACT, null,everestCommunity)
+loggerApi.info('findStorageRegistryDomains---'+findStorageRegistryDomains)
+
+if(!findStorageRegistryDomains.isEmpty()) {
+	everestStorageDomain = findStorageRegistryDomains.get(0).getId()
+}
+else {
+	def newEverestStorageDomain=addDomain(everestCommunity, storageDomainTypeId, storageDomainName)
+	everestStorageDomain=newEverestStorageDomain.getId()
+}
+
+findStorageRegistryDomains = findDomain(storageDomainName, MatchMode.EXACT, null,  string2Uuid(enterpriseCommunityId))
+if(!findStorageRegistryDomains.isEmpty()) {
+	enterPriseStorageDomain = findStorageRegistryDomains.get(0).getId()
+	loggerApi.info("enterPriseStorageDomain==>"+enterPriseStorageDomain)
+}
+else {
+	def newEnterPriseStorageDomain=addDomain(string2Uuid(enterpriseCommunityId), storageDomainTypeId, storageDomainName)
+	enterPriseStorageDomain=newEnterPriseStorageDomain.getId()
+	loggerApi.info('enterPriseStorageDomain---'+enterPriseStorageDomain)
+}
+
+
+loggerApi.info('everestCommunity---'+everestCommunity)
+loggerApi.info('everestStorageDomain---'+everestStorageDomain)
+loggerApi.info('enterPriseStorageDomain---'+enterPriseStorageDomain)
+
+def techUtilizesPipeline = findRelationsBySourceAndType(storageAssetId,string2Uuid(techAssetUtilizesPipelineRelationTypeId))
+if(!techUtilizesPipeline.isEmpty()) {
+	def hummingBirdFound = techUtilizesPipeline.find{
+		def hummingbirdId = it.getTarget().getId()
+		loggerApi.info("hummingbirdId==>"+hummingbirdId)
+		it.getTarget().getName() == 'Hummingbird'
+	}
+
+	def orangeFound = techUtilizesPipeline.find{
+		it.getTarget().getName() == 'Orange'
+	}
+	if(hummingBirdFound != null && orangeFound == null) {
+		currentSTPipelineId=hummingBirdFound.getTarget().getId()
+		currentSTPipeline = hummingBirdFound.getTarget().getName()
+		newSTDomainId = everestStorageDomain
+		tsPromoteStatus = approvedStatusId
+	}
+	if(hummingBirdFound == null && orangeFound != null) {
+		currentSTPipelineId=orangeFound.getTarget().getId()
+		currentSTPipeline = orangeFound.getTarget().getName()
+		newSTDomainId = enterPriseStorageDomain
+		tsPromoteStatus = activeStatusId
+	}
+	if(hummingBirdFound != null && orangeFound != null) {
+		currentSTPipelineId=orangeFound.getTarget().getId()
+		currentSTPipeline = orangeFound.getTarget().getName()
+		newSTDomainId = enterPriseStorageDomain
+		tsPromoteStatus = activeStatusId
+	}
+	if(hummingBirdFound == null && orangeFound == null) {
+		currentSTPipelineId = techUtilizesPipeline.get(0).getTarget().getId()
+		currentSTPipeline = techUtilizesPipeline.get(0).getTarget().getName()
+		newSTDomainId = storageDomainId
+		tsPromoteStatus = candidateStatusId
+	}
+
+
+	def promotedToPipelineRelations = findRelationsBySourceAndType(currentSTPipelineId,string2Uuid(pipelinePromotedToPipelineRelTypeId))
+	if(!promotedToPipelineRelations.isEmpty()) {
+		tsPromotedPipelineId = promotedToPipelineRelations.get(0).getTarget().getId()
+		tsPromotedPipelineName = promotedToPipelineRelations.get(0).getTarget().getName()
+		loggerApi.info("promotedPipelineName==>"+promotedPipelineName)
+	}
+}
+
+
+if(currentOfferingName.lastIndexOf("_") != -1) {
+	def devPipeline = currentOfferingName.substring(currentOfferingName.indexOf("_")+1)
+	loggerApi.info("devPipeline==>"+devPipeline)
+	updatedFullName = currentOfferingName.replace(devPipeline,tsPromotedPipelineName+' '+storagePlatformType)
+	updatedDisplayName = currentOfferingDisplayName.replace(devPipeline,tsPromotedPipelineName+' '+storagePlatformType)
+	loggerApi.info('updatedFullName--'+updatedFullName)
+}
+else {
+	updatedFullName=currentOfferingName+'_'+tsPromotedPipelineName+' '+storagePlatformType
+	updatedDisplayName = currentOfferingDisplayName+'_'+tsPromotedPipelineName+' '+storagePlatformType
+	loggerApi.info('updatedDisplayName---'+updatedDisplayName)
+}
+def newStorage
+def newStorageId
+def newStorageName = updatedFullName
+def newStorageDisplayName = updatedDisplayName
+loggerApi.info('result storage domain --------'+newSTDomainId +'----tsPromotedPipelineName---'+tsPromotedPipelineName)
+loggerApi.info('newStorageName---'+newStorageName)
+if(promotedPipelineName=='Humming Bird' || promotedPipelineName=='Orange') {
+
+	newStorage = addAsset(newStorageName,storageTypeId,newSTDomainId,newStorageDisplayName,string2Uuid(tsPromoteStatus))
+	newStorageId = newStorage.getId()
+}
+if(promotedPipelineName=='Tulip') {
+	def findStorageEnterprise= findAssets(newStorageName,MatchMode.EXACT,null,null, newSTDomainId,null)
+	loggerApi.info('findStorageEnterprise--'+findStorageEnterprise)
+	
+	if(findStorageEnterprise.isEmpty()) {
+
+		newStorage = addAsset(newStorageName,storageTypeId,newSTDomainId,newStorageDisplayName,string2Uuid(tsPromoteStatus))
+		newStorageId = newStorage.getId()
+	}
+	else {
+		findStorageName=findStorageEnterprise.get(0).getName()
+		loggerApi.info('findStorageName--'+findStorageName)
+		newStorage = findStorageEnterprise
+		newStorageId = newStorage.get(0).getId()
+	}
+}
+loggerApi.info('newStorage---'+newStorage)
+
+loggerApi.info('newStorageName---'+newStorageName)
+loggerApi.info('newStorageId---'+newStorageId)
+
+addRelation(string2Uuid(eachOffering),storageToOfferingRelationTypeId,newStorageId)
+def findStoregeRelation=findRelations(newStorageId, string2Uuid(techAssetUtilizesPipelineRelationTypeId),tsPromotedPipelineId)
+loggerApi.info('findStoregeRelation---'+findStoregeRelation)
+if(findStoregeRelation.isEmpty()) {
+	addRelation(newStorageId,string2Uuid(techAssetUtilizesPipelineRelationTypeId),tsPromotedPipelineId)
+	addAttribute(newStorageId, string2Uuid(storagePlatformAttrTypeId),storagePlatformType)
+	
+}
+
+loggerApi.info('*********** Storage updated *************')
+//addAttribute(newStorageId, string2Uuid(storagePlatformAttrTypeId),storagePlatformType)
+
+sleep(3000)
+
+def storageRelations = [accessibleThroughFileRelTypeId, accessibleThroughDatabaseRelTypeId, accessibleThroughHDFSRelTypeId, accessibleThroughS3RelTypeId, accessibleThroughImpalaRelTypeId]
+loggerApi.info('storageRelations********'+storageRelations)
+
+def existingStorage
+for(storageRelation in storageRelations) {
+	def accesibleThroughRelations = findRelationsBySourceAndType(string2Uuid(eachOffering),string2Uuid(storageRelation))
+	if(!accesibleThroughRelations.isEmpty()) {
+		for(accesibleThroughRelation in accesibleThroughRelations) {
+			def accesibleThroughRelationAssetId = accesibleThroughRelation.getTarget().getId()
+			def accesibleThroughRelationAssetName = assetApi.getAsset(accesibleThroughRelation.getTarget().getId()).getName()
+			def accesibleThroughRelationAssetDisplayName =assetApi.getAsset(accesibleThroughRelation.getTarget().getId()).getDisplayName()
+			def findStorage= findAssets(accesibleThroughRelationAssetName,MatchMode.EXACT,null,null, newSTDomainId,null)
+			if(findStorage.isEmpty())
+			{
+			existingStorage = changeAsset(accesibleThroughRelationAssetId,accesibleThroughRelationAssetName,accesibleThroughRelationAssetDisplayName,newSTDomainId,string2Uuid(tsPromoteStatus))
+			}
+		}
+	}
+}
+
+
+if(storagePlatformType == 'FILESYSTEM') {
+	if(execution.getVariable('storageResourceURI') != null) {
+		loggerApi.info('-----check---')
+		addAttribute(newStorageId,string2Uuid(storageResourceURIAttrTypeId),storageResourceURI)
+	}
+	if(execution.getVariable('storageFormat') != null) {
+		addAttribute(newStorageId, string2Uuid(storageFormatAttrTypeId),storageFormat)
+	}
+	if(execution.getVariable('storageCompression') != "") {
+		addAttribute(newStorageId, string2Uuid(storageCompressionAttrTypeId),storageCompression)
+	}
+	if(execution.getVariable('resourceParameters') != null) {
+		addAttribute(newStorageId, string2Uuid(resourceParametersAttrTypeId),resourceParameters)
+	}
+	if(execution.getVariable('authenticationType') != null || execution.getVariable('authenticationType') != "") {
+		addAttribute(newStorageId, string2Uuid(authenticationTypeAttrTypeId),authenticationType)
+	}
+	if(execution.getVariable('userId') != null) {
+		addAttribute(newStorageId, string2Uuid(userIdAttrTypeId),userId)
+	}
+	if(execution.getVariable('userIdPasswordVaultKey') != null) {
+		addAttribute(newStorageId, string2Uuid(userIdPasswordAttrTypeId),userIdPasswordVaultKey)
+	}
+	if(execution.getVariable('customReaderClass') != null) {
+		addAttribute(newStorageId, string2Uuid(customReaderClassAttrTypeId),customReaderClass)
+	}
+	if(execution.getVariable('customReaderParameter') != null) {
+		addAttribute(newStorageId, string2Uuid(customReaderParamsAttrTypeId),customReaderParameter)
+	}
+	if(execution.getVariable("fileHeaderRowCount") != "" && fileHeaderRowCount != null) {
+		addAttribute(newStorageId, string2Uuid(fileHeaderRowCountAttrTypeId),fileHeaderRowCount)
+	}
+	if(execution.getVariable('fileTrailerSchema') != null) {
+		addAttribute(newStorageId, string2Uuid(fileTrailerSchemaAttrTypeId),fileTrailerSchema)
+	}
+	if(execution.getVariable("fileTrailerRecordCount") != "" && fileTrailerRecordCount != null) {
+		addAttribute(newStorageId, string2Uuid(fileTrailerRecordCountAttrTypeId),fileTrailerRecordCount)
+	}
+	if(execution.getVariable('fileDelimiter') != null) {
+		addAttribute(newStorageId, string2Uuid(fileDelimiterAttrTypeId),fileDelimiter)
+	}
+	if(execution.getVariable('fileFlagExtension') != null) {
+		addAttribute(newStorageId, string2Uuid(fileFlagExtensionAttrTypeId),fileFlagExtension)
+	}
+}
+
+
+
+if(storagePlatformType == 'S3') {
+	if(execution.getVariable('storageResourceURI') != null) {
+		addAttribute(newStorageId,string2Uuid(storageResourceURIAttrTypeId),storageResourceURI)
+		loggerApi.info('storageResourceURI---'+storageResourceURI)
+	}
+	if(execution.getVariable('storageFormat') != null) {
+		loggerApi.info('storageFormat---'+storageFormat)
+		
+		addAttribute(newStorageId, string2Uuid(storageFormatAttrTypeId),storageFormat)
+	}
+	if(execution.getVariable('storageCompression') != null || execution.getVariable('storageCompression') != "") {
+		addAttribute(newStorageId, string2Uuid(storageCompressionAttrTypeId),storageCompression)
+	}
+	if(execution.getVariable('resourceParameters') != null) {
+		addAttribute(newStorageId, string2Uuid(resourceParametersAttrTypeId),resourceParameters)
+	}
+	if(execution.getVariable('authenticationType') != null || execution.getVariable('authenticationType') != "") {
+		addAttribute(newStorageId, string2Uuid(authenticationTypeAttrTypeId),authenticationType)
+	}
+	if(execution.getVariable('userId') != null) {
+		addAttribute(newStorageId, string2Uuid(userIdAttrTypeId),userId)
+	}
+	if(execution.getVariable('userIdPasswordVaultKey') != null) {
+		addAttribute(newStorageId, string2Uuid(userIdPasswordAttrTypeId),userIdPasswordVaultKey)
+	}
+	if(execution.getVariable('customReaderClass') != null) {
+		addAttribute(newStorageId, string2Uuid(customReaderClassAttrTypeId),customReaderClass)
+	}
+	if(execution.getVariable('customReaderParameter') != null) {
+		addAttribute(newStorageId, string2Uuid(customReaderParamsAttrTypeId),customReaderParameter)
+	}
+	if(execution.getVariable('awsAccountIdentifier') != null) {
+		addAttribute(newStorageId, string2Uuid(awsAccountIdentifierAttrTypeId),awsAccountIdentifier)
+	}
+	if(execution.getVariable('awsRegion') != null) {
+		addAttribute(newStorageId, string2Uuid(awsRegionAttrTypeId),awsRegion)
+	}
+	if(execution.getVariable('awsDefaultProfile') != null) {
+		addAttribute(newStorageId, string2Uuid(awsDefaultProfileAttrTypeId),awsDefaultProfile)
+	}
+	if(execution.getVariable('kmsARN') != null) {
+		addAttribute(newStorageId, string2Uuid(kmsARNAttrTypeId),kmsARN)
+	}
+	if(execution.getVariable('bucketARN') != null) {
+		addAttribute(newStorageId, string2Uuid(bucketARNAttrTypeId),bucketARN)
+	}
+	if(execution.getVariable('bucketPrefix') != null) {
+		addAttribute(newStorageId, string2Uuid(bucketPrefixAttrTypeId),bucketPrefix)
+	}
+	if(execution.getVariable('bucketName') != null) {
+		addAttribute(newStorageId, string2Uuid(bucketNameAttrTypeId),bucketName)
+	}
+}
+
+
+if(storagePlatformType == 'HDFS') {
+	if(execution.getVariable('storageResourceURI') != null) {
+		addAttribute(newStorageId,string2Uuid(storageResourceURIAttrTypeId),storageResourceURI)
+	}
+	if(execution.getVariable('storageFormat') != null) {
+		addAttribute(newStorageId, string2Uuid(storageFormatAttrTypeId),storageFormat)
+	}
+	if(execution.getVariable('storageCompression') != null || execution.getVariable('storageCompression') != "") {
+		addAttribute(newStorageId, string2Uuid(storageCompressionAttrTypeId),storageCompression)
+	}
+	if(execution.getVariable('resourceParameters') != null) {
+		addAttribute(newStorageId, string2Uuid(resourceParametersAttrTypeId),resourceParameters)
+	}
+	if(execution.getVariable('authenticationType') != null || execution.getVariable('authenticationType') != "") {
+		addAttribute(newStorageId, string2Uuid(authenticationTypeAttrTypeId),authenticationType)
+	}
+	if(execution.getVariable('userId') != null) {
+		addAttribute(newStorageId, string2Uuid(userIdAttrTypeId),userId)
+	}
+	if(execution.getVariable('userIdPasswordVaultKey') != null) {
+		addAttribute(newStorageId, string2Uuid(userIdPasswordAttrTypeId),userIdPasswordVaultKey)
+	}
+	if(execution.getVariable('customReaderClass') != null) {
+		addAttribute(newStorageId, string2Uuid(customReaderClassAttrTypeId),customReaderClass)
+	}
+	if(execution.getVariable('customReaderParameter') != null) {
+		addAttribute(newStorageId, string2Uuid(customReaderParamsAttrTypeId),customReaderParameter)
+	}
+	if(execution.getVariable('hadoopConfigLocation') != null) {
+		addAttribute(newStorageId, string2Uuid(hadoopConfigLocAttrTypeId),hadoopConfigLocation)
+	}
+}
+
+if(storagePlatformType == 'IMPALA') {
+	if(execution.getVariable('storageResourceURI') != null) {
+		addAttribute(newStorageId,string2Uuid(storageResourceURIAttrTypeId),storageResourceURI)
+	}
+	if(execution.getVariable('storageFormat') != null) {
+		addAttribute(newStorageId, string2Uuid(storageFormatAttrTypeId),storageFormat)
+	}
+	if(execution.getVariable('storageCompression') != null || execution.getVariable('storageCompression') != "") {
+		addAttribute(newStorageId, string2Uuid(storageCompressionAttrTypeId),storageCompression)
+	}
+	if(execution.getVariable('resourceParameters') != null) {
+		addAttribute(newStorageId, string2Uuid(resourceParametersAttrTypeId),resourceParameters)
+	}
+	if(execution.getVariable('authenticationType') != null || execution.getVariable('authenticationType') != "") {
+		addAttribute(newStorageId, string2Uuid(authenticationTypeAttrTypeId),authenticationType)
+	}
+	if(execution.getVariable('userId') != null) {
+		addAttribute(newStorageId, string2Uuid(userIdAttrTypeId),userId)
+	}
+	if(execution.getVariable('userIdPasswordVaultKey') != null) {
+		addAttribute(newStorageId, string2Uuid(userIdPasswordAttrTypeId),userIdPasswordVaultKey)
+	}
+	if(execution.getVariable('customReaderClass') != null) {
+		addAttribute(newStorageId, string2Uuid(customReaderClassAttrTypeId),customReaderClass)
+	}
+	if(execution.getVariable('customReaderParameter') != null) {
+		addAttribute(newStorageId, string2Uuid(customReaderParamsAttrTypeId),customReaderParameter)
+	}
+	if(execution.getVariable('impalaConfigLocation') != null) {
+		addAttribute(newStorageId, string2Uuid(impalaConfigLocAttrTypeId),impalaConfigLocation)
+	}
+}
+
+
+if(storagePlatformType == 'DATABASE') {
+	if(execution.getVariable('storageResourceURI') != null) {
+		addAttribute(newStorageId,string2Uuid(storageResourceURIAttrTypeId),storageResourceURI)
+	}
+	if(execution.getVariable('resourceParameters') != null) {
+		addAttribute(newStorageId, string2Uuid(resourceParametersAttrTypeId),resourceParameters)
+	}
+	if(execution.getVariable('authenticationType') != null  || execution.getVariable('authenticationType') != "") {
+		addAttribute(newStorageId, string2Uuid(authenticationTypeAttrTypeId),authenticationType)
+	}
+	if(execution.getVariable('userId') != null) {
+		addAttribute(newStorageId, string2Uuid(userIdAttrTypeId),userId)
+	}
+	if(execution.getVariable('userIdPasswordVaultKey') != null) {
+		addAttribute(newStorageId, string2Uuid(userIdPasswordAttrTypeId),userIdPasswordVaultKey)
+	}
+	if(execution.getVariable('customReaderClass') != null) {
+		addAttribute(newStorageId, string2Uuid(customReaderClassAttrTypeId),customReaderClass)
+	}
+	if(execution.getVariable('customReaderParameter') != null) {
+		addAttribute(newStorageId, string2Uuid(customReaderParamsAttrTypeId),customReaderParameter)
+	}
+	if(execution.getVariable('dataIngestionStrategy') != "") {
+		addAttribute(newStorageId, string2Uuid(databaseDataIngestionStrategyAttrTypeId),dataIngestionStrategy)
+	}
+	if(execution.getVariable('databaseDataRetrievalQueryParameters') != null) {
+		addAttribute(newStorageId, string2Uuid(databaseDataRetrievalQueryParametersAttrTypeId),databaseDataRetrievalQueryParameters)
+	}
+	if(execution.getVariable('databaseDataRetrievalPartition') != null) {
+		addAttribute(newStorageId, string2Uuid(databaseDataRetrivalPartitionAttrTypeId),databaseDataRetrievalPartition)
+	}
+	if(execution.getVariable('databaseDataRetrievalQuery') != null) {
+		addAttribute(newStorageId, string2Uuid(databaseDataRetrievalQueryAttrTypeId),databaseDataRetrievalQuery)
+	}
+	if(execution.getVariable("fetchSize") != "" && fetchSize != null) {
+		addAttribute(newStorageId, string2Uuid(fetchSizeAttrTypeId),fetchSize)
+	}
+	loggerApi.info('StorageCreated')
+}
+]]></script>
+      </scriptTask>
+      <sequenceFlow id="flow20" sourceRef="scripttask5" targetRef="endevent3"></sequenceFlow>
+      <endEvent id="endevent3" name="End"></endEvent>
+      <startEvent id="startevent2" name="Start"></startEvent>
+      <sequenceFlow id="flow21" sourceRef="startevent2" targetRef="scripttask4"></sequenceFlow>
+    </subProcess>
+    <scriptTask id="scripttask6" name="Promote  offering, PDD" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script><![CDATA[import com.collibra.dgc.core.api.dto.MatchMode
+import com.collibra.dgc.core.api.dto.instance.attribute.AddAttributeRequest
+import com.collibra.dgc.core.api.dto.instance.attribute.ChangeAttributeRequest
+import com.collibra.dgc.core.api.dto.instance.attribute.FindAttributesRequest
+
+
+/ Updating offering /
+
+def updatedOffering
+def updatedOfferingId
+def offeringPipelineRelations
+def updatedOfferingFullName
+def updatedOfferingDisplayName
+def currentOfferingId = itemV2.getId()
+def currentOfferingDisplayName = assetApi.getAsset(currentOfferingId).getDisplayName()
+def currentOfferingName = assetApi.getAsset(currentOfferingId).getName()
+loggerApi.info('currentOfferingName--'+currentOfferingName)
+if(currentOfferingName.lastIndexOf("_") != -1) {
+	def offeringPipeline = currentOfferingName.substring(currentOfferingName.lastIndexOf("_")+1)
+	//currentOfferingName.substring(currentOfferingName.indexOf("_")+1,currentOfferingName.lastIndexOf("_"))
+	updatedOfferingFullName = currentOfferingName.replace('_'+offeringPipeline,"")
+	updatedOfferingDisplayName = currentOfferingDisplayName.replace('_'+offeringPipeline,"")
+	loggerApi.info('updatedOfferingFullName--'+updatedOfferingFullName)
+
+}
+else {
+	updatedOfferingFullName = currentOfferingName
+	updatedOfferingDisplayName = currentOfferingDisplayName
+	loggerApi.info('updatedOfferingFullName--'+updatedOfferingFullName)
+
+}
+if(promotedPipelineName == 'Humming Bird' || promotedPipelineName == 'Orange')
+{
+
+	loggerApi.info('updatedOfferingFullName--'+updatedOfferingFullName)
+
+	updatedOffering = changeAsset(currentOfferingId,updatedOfferingFullName,updatedOfferingDisplayName,newDSDomainId,string2Uuid(promoteStatus))
+	loggerApi.info("updatedOffering--"+updatedOffering)
+	updatedOfferingId = updatedOffering.getId()
+	offeringPipelineRelations = findRelations(updatedOfferingId,string2Uuid(dataAssetUtilisesPipelineRelationTypeId),promotedPipelineId)
+	if(offeringPipelineRelations.isEmpty())
+	{
+		addRelation(updatedOfferingId,string2Uuid(dataAssetUtilisesPipelineRelationTypeId),promotedPipelineId)
+	}
+
+	loggerApi.info('********** Offering updated ************')
+}
+def findEnterpriseOffering
+if(promotedPipelineName == 'Tulip')
+{
+ findEnterpriseOffering = findAssets(currentOfferingName, MatchMode.EXACT,null,null, newDSDomainId, string2Uuid(enterpriseCommunityId))
+	loggerApi.info("findEnterpriseOffering=="+findEnterpriseOffering)
+	if(findEnterpriseOffering.isEmpty()) {
+		updatedOffering = changeAsset(currentOfferingId,updatedOfferingFullName,updatedOfferingDisplayName,newDSDomainId,string2Uuid(promoteStatus))
+		updatedOfferingId = updatedOffering.getId()
+		offeringPipelineRelations = findRelations(updatedOfferingId,string2Uuid(dataAssetUtilisesPipelineRelationTypeId),promotedPipelineId)
+		if(offeringPipelineRelations.isEmpty())
+		{
+			addRelation(updatedOfferingId,string2Uuid(dataAssetUtilisesPipelineRelationTypeId),promotedPipelineId)
+		}
+		loggerApi.info('********** Offering updated ************')
+
+	}
+	else {
+
+		def findEnterpriseOfferingId = findEnterpriseOffering.get(0).getId()
+				
+		/*---------Updating Data Offering Attributes-----*/
+		
+		if(execution.getVariable('descriptionAttrValue') != null)	{
+			descriptionAttrValueEnterprise=findAttributeOfAsset(findEnterpriseOfferingId, [string2Uuid(descriptionAttrId)])
+			loggerApi.info("descriptionAttrValueEnterprise==>"+descriptionAttrValueEnterprise)
+			if(!descriptionAttrValueEnterprise.isEmpty()) {
+				def removeattribute = []
+				removeattribute.add(descriptionAttrValueEnterprise.get(0).getId())
+				attributeApi.removeAttribute(removeattribute)
+			}
+			addAttribute(findEnterpriseOfferingId,string2Uuid(descriptionAttrId),descriptionAttrValue)
+		}
+	
+	if(execution.getVariable('dataOfferingConsumableAttrValue') != null) {
+		dataOfferingConsumableAttrValueEnterprise=findAttributeOfAsset(findEnterpriseOfferingId, [string2Uuid(consumableAttrId)])
+		if(!dataOfferingConsumableAttrValueEnterprise.isEmpty()) {
+			def removeattribute = []
+			removeattribute.add(dataOfferingConsumableAttrValueEnterprise.get(0).getId())
+			attributeApi.removeAttribute(removeattribute)
+		}
+		addAttribute(findEnterpriseOfferingId,string2Uuid(consumableAttrId),dataOfferingConsumableAttrValue)
+	}
+
+	if(execution.getVariable('publicationModeAttrValue') != null) {
+		publicationModeAttrValueEnterprise=findAttributeOfAsset(findEnterpriseOfferingId, [string2Uuid(publicationModeAttrId)])
+		if(!publicationModeAttrValueEnterprise.isEmpty()) {
+			def removeattribute = []
+			removeattribute.add(publicationModeAttrValueEnterprise.get(0).getId())
+			attributeApi.removeAttribute(removeattribute)
+		}
+		addAttribute(findEnterpriseOfferingId,string2Uuid(publicationModeAttrId),publicationModeAttrValue)
+	}
+
+	if(execution.getVariable('contactEmailAttrValue') != null) {
+		contactEmailAttrValueEnterprise=findAttributeOfAsset(findEnterpriseOfferingId, [string2Uuid(contactEmailAttrId)])
+		if(!contactEmailAttrValueEnterprise.isEmpty()) {
+			def removeattribute = []
+			removeattribute.add(contactEmailAttrValueEnterprise.get(0).getId())
+			attributeApi.removeAttribute(removeattribute)
+		}
+		addAttribute(findEnterpriseOfferingId,string2Uuid(contactEmailAttrId),contactEmailAttrValue)
+	}
+	
+	def slaCalenderAttrValueEnterprise
+	if(execution.getVariable('slaCalenderAttrValue') != null) {
+		slaCalenderAttrValueEnterprise=findAttributeOfAsset(findEnterpriseOfferingId, [string2Uuid(slaCalenderAttrId)])
+		//slaCalenderAttrValueEnterprise = slaCalenderAttrValueEnterprise.get(0).getValue().replaceAll("<[^>]*>", "")
+		if(!slaCalenderAttrValueEnterprise.isEmpty()) {
+			def removeattribute = []
+			removeattribute.add(slaCalenderAttrValueEnterprise.get(0).getId())
+			attributeApi.removeAttribute(removeattribute)
+		}
+		addAttribute(findEnterpriseOfferingId,string2Uuid(slaCalenderAttrId),slaCalenderAttrValue)
+	}
+	
+	def slaArrivalTimeAttrValueEnterprise
+	if(execution.getVariable('slaArrivalTimeAttrValue') != null) {
+		slaArrivalTimeAttrValueEnterprise=findAttributeOfAsset(findEnterpriseOfferingId, [string2Uuid(slaArrivalTimeAttrId)])
+		//slaArrivalTimeAttrValueEnterprise = slaArrivalTimeAttrValueEnterprise.get(0).getValue().replaceAll("<[^>]*>", "")
+		if(!slaArrivalTimeAttrValueEnterprise.isEmpty()) {
+			def removeattribute = []
+			removeattribute.add(slaArrivalTimeAttrValueEnterprise.get(0).getId())
+			attributeApi.removeAttribute(removeattribute)
+		}
+		addAttribute(findEnterpriseOfferingId,string2Uuid(slaArrivalTimeAttrId),slaArrivalTimeAttrValue)
+	}
+	def slaOffsetDaysAttrValueEnterprise
+	if(execution.getVariable('slaOffsetDaysAttrValue') != null) {
+		slaOffsetDaysAttrValueEnterprise=findAttributeOfAsset(findEnterpriseOfferingId, [string2Uuid(slaOffsetDaysAttrId)])
+		//slaOffsetDaysAttrValueEnterprise = slaOffsetDaysAttrValueEnterprise.toString()
+		//slaOffsetDaysAttrValueEnterprise = slaOffsetDaysAttrValueEnterprise.minus('.0')
+		if(!slaOffsetDaysAttrValueEnterprise.isEmpty()) {
+			def removeattribute = []
+			removeattribute.add(slaOffsetDaysAttrValueEnterprise.get(0).getId())
+			attributeApi.removeAttribute(removeattribute)
+			loggerApi.info("offsetDaysAttr is remove")
+		}
+		addAttribute(findEnterpriseOfferingId,string2Uuid(slaOffsetDaysAttrId),slaOffsetDaysAttrValue)
+	}
+	
+	
+	def schemaDefinitionAttrValueEnterprise
+	if(execution.getVariable('schemaDefinitionAttrValue') != null) {
+		schemaDefinitionAttrValueEnterprise=findAttributeOfAsset(findEnterpriseOfferingId, [string2Uuid(schemaDefinitionAttrTypeId)])
+		//schemaDefinitionAttrValueEnterprise = schemaDefinitionAttrValueEnterprise.get(0).getValue().replaceAll("<[^>]*>", "")
+		if(!schemaDefinitionAttrValueEnterprise.isEmpty()) {
+			def removeattribute = []
+			removeattribute.add(schemaDefinitionAttrValueEnterprise.get(0).getId())
+			attributeApi.removeAttribute(removeattribute)
+		}
+		addAttribute(findEnterpriseOfferingId,string2Uuid(schemaDefinitionAttrTypeId),schemaDefinitionAttrValue)
+	}
+	
+	if(!mileStoneFieldList.isEmpty())
+		{
+			
+			presentAssetEnterprise = findRelationsBySourceAndType(findEnterpriseOfferingId,string2Uuid(dataofferingMilestoneFieldRelTypeId))
+			loggerApi.info("presentAsset==="+presentAsset)
+			execution.setVariable("presentAsset",presentAsset)
+			def mileStoneFieldList1 = []
+			if(!presentAssetEnterprise.isEmpty()) {
+				for(relation in presentAssetEnterprise) {
+					mileStoneFieldList1.add(relation.getTarget().getId())
+					loggerApi.info("presentAssetTargetId--"+mileStoneFieldList1)
+	
+				}
+			}
+			if(mileStoneFieldList1!=mileStoneFieldList) {
+		for(milestone in mileStoneFieldList)
+		{
+	addRelation(findEnterpriseOfferingId, string2Uuid(dataofferingMilestoneFieldRelTypeId),milestone)
+	loggerApi.info("milestone relation added")
+		}
+		}
+		}
+	
+	
+	if(!selectedDataOfferingSchemaRelationList.isEmpty())
+		{
+			def selectedDataOfferingSchemaRelationList1=[]
+			def selectedDataOfferingSchemaRelationIdList1 = []
+			def enterpriseSchemaRelations = findRelationsBySourceAndType(findEnterpriseOfferingId,string2Uuid(dataOfferingGroupsSchemaRelTypeId))// Finding schema relations of initiated offering
+			
+			if(!enterpriseSchemaRelations.isEmpty()) {
+				for(relation in enterpriseSchemaRelations)
+				{
+					selectedDataOfferingSchemaRelationList1.add(relation.getTarget().getName())
+					selectedDataOfferingSchemaRelationIdList1.add(relation.getTarget().getId())
+					loggerApi.info("selectedDataOfferingSchemaRelationList1=="+selectedDataOfferingSchemaRelationList1)
+			//if(selectedDataOfferingSchemaRelationList1!=selectedDataOfferingSchemaRelationList) {
+				loggerApi.info("if not equals")
+		for(schema in selectedDataOfferingSchemaRelationIdList)
+		{
+			if(selectedDataOfferingSchemaRelationList1!=selectedDataOfferingSchemaRelationList) {
+				
+			loggerApi.info("schema=="+schema)
+			//schema = schema.getId()
+			//loggerApi.info("schema=="+schema)
+			def findSchemaRelations=findRelations(findEnterpriseOfferingId, string2Uuid(dataOfferingGroupsSchemaRelTypeId), schema)
+			loggerApi.info("findRelations relation ---"+findSchemaRelations)
+			
+			if(findSchemaRelations.isEmpty())
+			{
+			addRelation(findEnterpriseOfferingId, string2Uuid(dataOfferingGroupsSchemaRelTypeId), schema)
+			}
+			loggerApi.info("schema relation added")
+		}
+		
+		}
+		}
+			}
+		}
+	
+}
+}
+
+
+
+
+/* schema DomainId */
+def pddAssets = []
+def schemaDomainName
+def schemaDomainId
+def findschemaAssets
+def schemaRelation=findRelationsBySourceAndType(itemV2.getId(),string2Uuid(dataOfferingGroupsSchemaRelTypeId))
+loggerApi.info("schemaRelation==>"+schemaRelation)
+if(!schemaRelation.isEmpty())
+{
+for(schema in schemaRelation)
+{
+	if(promotedPipelineName == 'Tulip')
+	{
+		def schemaAsset=schema.getTarget().getId()
+		def schemaName = schema.getTarget().getName()
+		def currentSchemaDomain = assetApi.getAsset(schemaAsset).getDomain().getName()
+		def currentSchemaDomainId = assetApi.getAsset(schemaAsset).getDomain().getId()
+		def currentSchemaDomainType = domainApi.getDomain(currentSchemaDomainId).getType().getId()
+		def currentSchemaAssetName = assetApi.getAsset(schemaAsset).getName()
+		def currentSchemaAssetDsiplayName = assetApi.getAsset(schemaAsset).getDisplayName()
+		
+		def findSchemaDomains = findDomain(currentSchemaDomain, MatchMode.EXACT, null,string2Uuid(enterprisePhysicalModelInventoryCommunityId))
+		if(!findSchemaDomains.isEmpty())
+		{
+			schemaDomainId = findSchemaDomains.get(0).getId()
+			findschemaAssets = findAssets(schemaName, MatchMode.EXACT,null,null, schemaDomainId,null)
+					}
+		else
+		{
+			def newSchemaDomain = addDomain(string2Uuid(enterprisePhysicalModelInventoryCommunityId), currentSchemaDomainType, currentSchemaDomain)
+			schemaDomainId = newSchemaDomain.getId()
+		}
+
+		pddAssets.add(schemaAsset)
+		def tableRelations = findRelationsBySourceAndType(schemaAsset,string2Uuid(schemaContainsTableRelTypeId))
+		if(!tableRelations.isEmpty())
+		{
+			for(tableRelation in tableRelations)
+			{
+				pddAssets.add(tableRelation.getTarget().getId())
+			
+				def columnRelations = findRelationsByTargetAndType(tableRelation.getTarget().getId(),string2Uuid(columnIsPartOfTableRelTypeId))
+				if(!columnRelations.isEmpty())
+				{
+					for(columnRelation in columnRelations)
+					{
+						pddAssets.add(tableRelation.getSource().getId())
+					}
+				}
+			}
+		}
+
+	}
+}
+}
+
+if(!pddAssets.isEmpty())
+{
+for(pddAsset in pddAssets)
+{
+	 def pddasset=assetApi.getAsset(pddAsset).getName()
+	loggerApi.info('pddasset---'+pddasset)
+	def findpddAsset=findAssets(pddasset, MatchMode.EXACT,null,null, schemaDomainId,null)
+	if(findpddAsset.isEmpty())
+	{
+	changeAsset(pddAsset,null,null,schemaDomainId,string2Uuid(activeStatusId))
+	}
+	}
+	
+	
+}
+
+
+loggerApi.info('*********** Schema updated *************')
+execution.setVariable('findEnterpriseOffering',findEnterpriseOffering)
+
+
+
+
+]]></script>
+    </scriptTask>
+    <sequenceFlow id="flow22" sourceRef="subprocess1" targetRef="scripttask7"></sequenceFlow>
+    <endEvent id="endevent4" name="End"></endEvent>
+    <sequenceFlow id="flow23" sourceRef="scripttask6" targetRef="scripttask8"></sequenceFlow>
+    <scriptTask id="scripttask7" name="Get Current Offering Attributes" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script><![CDATA[import com.collibra.dgc.core.api.dto.MatchMode
+import com.collibra.dgc.core.api.dto.instance.attribute.AddAttributeRequest
+import com.collibra.dgc.core.api.dto.instance.attribute.ChangeAttributeRequest
+import com.collibra.dgc.core.api.dto.instance.attribute.FindAttributesRequest
+
+def selectedDataOfferingSchemaRelationList = []
+def currentOfferingId= itemV2.getId()
+		/* Getting initiated offering asset name */
+		def assetName = assetApi.getAsset(currentOfferingId).getName()
+
+		loggerApi.info("asset name " + assetName)
+
+		execution.setVariable("oldAssetName" , assetName)
+
+		//Finding the value of EPS Producer Attribute from the Data Set
+		def typeIds = []
+		typeIds.add(string2Uuid(epsProducerNameAttrTypeId))
+
+		def epsProducerName
+		def epsproducerAttr = findAttribute(currentOfferingId, typeIds)
+		if(!epsproducerAttr.isEmpty()) {
+			epsProducerName = epsproducerAttr
+			loggerApi.info('epsProducerName'+epsProducerName)
+		}
+		execution.setVariable('epsProducerName',epsProducerName)
+
+		//Getting selected offering asset name
+		def newAssetName = assetApi.getAsset(currentOfferingId).getName()
+		loggerApi.info("new asset name"+newAssetName)
+		execution.setVariable("newAssetName",newAssetName)
+
+		/*Getting Description Attribute values code from initiated offering and selected offering started*/
+		def descriptionAttrValue=findAttribute(currentOfferingId, [string2Uuid(descriptionAttrId)])
+		loggerApi.info("descriptionAttrValue==>"+descriptionAttrValue)
+		execution.setVariable("descriptionAttrValue",descriptionAttrValue)
+
+		def dataOfferingConsumableAttrValue=findAttribute(currentOfferingId, [string2Uuid(consumableAttrId)])
+		execution.setVariable("dataOfferingConsumableAttrValue",dataOfferingConsumableAttrValue)
+
+		def publicationModeAttrValue=findAttribute(currentOfferingId, [string2Uuid(publicationModeAttrId)])
+		execution.setVariable("publicationModeAttrValue",publicationModeAttrValue)
+
+
+		def contactEmailAttrValue=findAttribute(currentOfferingId, [string2Uuid(contactEmailAttrId)])
+		execution.setVariable("contactEmailAttrValue",contactEmailAttrValue)
+
+
+		/*Getting instanceName Attribute value from initiated offering code started*/
+		def presentAssetInstance
+		def presentAssetId1
+		presentInstance = findRelationsBySourceAndType(currentOfferingId,string2Uuid(dataAssetUtilisesPipelineRelationTypeId))
+
+		if(!presentInstance.isEmpty()) {
+			presentAssetId1 = presentInstance.get(0).getId()
+			presentAssetInstance = relationApi.getRelation(presentAssetId1).getTarget().getName()
+			loggerApi.info("presentAssetInstance==="+presentAssetInstance)
+		}
+		execution.setVariable("presentAssetInstance",presentAssetInstance)
+
+
+		def slaCalenderAttrValue=findAttribute(currentOfferingId, [string2Uuid(slaCalenderAttrId)])
+		slaCalenderAttrValue = slaCalenderAttrValue.replaceAll("<[^>]*>", "")
+		execution.setVariable("slaCalenderAttrValue",slaCalenderAttrValue)
+
+		def slaArrivalTimeAttrValue=findAttribute(currentOfferingId, [string2Uuid(slaArrivalTimeAttrId)])
+		slaArrivalTimeAttrValue = slaArrivalTimeAttrValue.replaceAll("<[^>]*>", "")
+		execution.setVariable("slaArrivalTimeAttrValue",slaArrivalTimeAttrValue)
+
+		def slaOffsetDaysAttrValue=findAttribute(currentOfferingId, [string2Uuid(slaOffsetDaysAttrId)])
+		slaOffsetDaysAttrValue = slaOffsetDaysAttrValue.toString()
+		slaOffsetDaysAttrValue = slaOffsetDaysAttrValue.minus('.0')
+		loggerApi.info("The present Offering Off Set Days are =>"+slaOffsetDaysAttrValue.toString())
+		execution.setVariable("slaOffsetDaysAttrValue",slaOffsetDaysAttrValue.toString())
+		
+		def schemaDefinitionAttrValue=findAttribute(currentOfferingId, [string2Uuid(schemaDefinitionAttrTypeId)])
+		schemaDefinitionAttrValue = slaArrivalTimeAttrValue.replaceAll("<[^>]*>", "")
+		execution.setVariable("schemaDefinitionAttrValue",schemaDefinitionAttrValue)
+		
+		presentAsset = findRelationsBySourceAndType(currentOfferingId,string2Uuid(dataofferingMilestoneFieldRelTypeId))
+		loggerApi.info("presentAsset==="+presentAsset)
+		execution.setVariable("presentAsset",presentAsset)
+		def mileStoneFieldList = []
+		if(!presentAsset.isEmpty()) {
+			for(relation in presentAsset) {
+				mileStoneFieldList.add(relation.getTarget().getId())
+				loggerApi.info("presentAssetTargetId--"+mileStoneFieldList)
+
+			}
+		}
+execution.setVariable("mileStoneFieldList",mileStoneFieldList)
+		/*Getting schemas from initiated offering and selected offering code starts*/
+
+		selectedDataOfferingSchemaRelationList=[]
+		def selectedDataOfferingSchemaRelationIdList=[]
+		def presentDODataSets
+		def selectedDODataSets
+		def presentDataSet
+		def presentDataSet1
+
+		presentSchemaRelations = findRelationsBySourceAndType(currentOfferingId,string2Uuid(dataOfferingGroupsSchemaRelTypeId))// Finding schema relations of initiated offering
+		if(!presentSchemaRelations.isEmpty()) {
+			for(relation in presentSchemaRelations)
+			{
+				selectedDataOfferingSchemaRelationList.add(relation.getTarget().getName())
+				selectedDataOfferingSchemaRelationIdList.add(relation.getTarget().getId())
+			}
+		}
+		loggerApi.info("selectedDataOfferingSchemaRelationList=="+selectedDataOfferingSchemaRelationList)
+		loggerApi.info("presentAsset1-->"+presentSchemaRelations)
+		execution.setVariable("selectedDataOfferingSchemaRelationList",selectedDataOfferingSchemaRelationList)
+		execution.setVariable("selectedDataOfferingSchemaRelationIdList",selectedDataOfferingSchemaRelationIdList)
+		
+]]></script>
+    </scriptTask>
+    <sequenceFlow id="flow24" sourceRef="scripttask7" targetRef="scripttask6"></sequenceFlow>
+    <scriptTask id="scripttask8" name="Descop Asset" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script><![CDATA[import com.collibra.dgc.core.api.component.instance.AttributeApi
+import com.collibra.dgc.core.api.dto.MatchMode
+import com.collibra.dgc.core.api.dto.instance.attribute.AddAttributeRequest
+if(promotedPipelineName == 'Tulip')
+{
+if(!findEnterpriseOffering.isEmpty())
+{
+// Finding source relations of initiated asset and removing them
+def sourceRel= findRelations(itemV2.getId(),null,null)
+
+if(!sourceRel.isEmpty()) {
+	for(source in sourceRel) {
+		relationApi.removeRelation(source.getId())
+		loggerApi.info("source relations removed")
+	}
+}
+
+
+// Finding target relations of initiated asset and removing them
+def targetRel= findRelations(null,null,itemV2.getId())
+
+if(!targetRel.isEmpty()) {
+	for(target in targetRel) {
+		relationApi.removeRelation(target.getId())
+		loggerApi.info("target relations removed")
+	}
+}
+def currentAssetInfo = assetApi.getAsset(itemV2.getId())
+def currentAssetFullName = currentAssetInfo.getName()
+def currentAssetDisplayName=currentAssetInfo.getDisplayName()
+
+def presentAssetId=assetApi.getAsset(itemV2.getId()).getId()
+def presentAssetTypeId =  assetApi.getAsset(itemV2.getId()).getType().getId()
+def targetAssets
+
+// Finding initiated assets are present in target descoped domain
+def findAssetsInTargetDomain=findAssets(currentAssetFullName, MatchMode.EXACT,null,null,string2Uuid(descopedDomainId),null)
+
+if(!findAssetsInTargetDomain.isEmpty()) {
+	// If initiated asset name is already present in descoped domain then remove and replace that asset with initiated asset
+	assetApi.removeAsset(findAssetsInTargetDomain.get(0).getId())
+	targetAssets=changeAsset(presentAssetId,currentAssetFullName,currentAssetDisplayName,string2Uuid(descopedDomainId),string2Uuid(descopedStatus))
+}
+else
+{
+	// If initiated asset name is not present in descoped domain then moving that asset to target descoped domain
+	targetAssets=changeAsset(presentAssetId,currentAssetFullName,currentAssetDisplayName,string2Uuid(descopedDomainId),string2Uuid(descopedStatus))
+	loggerApi.info("targetAssets==>"+targetAssets)
+}
+}
+}]]></script>
+    </scriptTask>
+    <sequenceFlow id="flow25" sourceRef="scripttask8" targetRef="endevent4"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
+    <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
+      <bpmndi:BPMNShape bpmnElement="pool1" id="BPMNShape_pool1">
+        <omgdc:Bounds height="700.0" width="2791.0" x="90.0" y="70.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="lane1" id="BPMNShape_lane1">
+        <omgdc:Bounds height="700.0" width="2771.0" x="110.0" y="70.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="130.0" y="238.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="74.0" width="151.0" x="560.0" y="219.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask3" id="BPMNShape_scripttask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="220.0" y="228.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="subprocess1" id="BPMNShape_subprocess1">
+        <omgdc:Bounds height="311.0" width="1211.0" x="1000.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask4" id="BPMNShape_scripttask4">
+        <omgdc:Bounds height="64.0" width="121.0" x="1060.0" y="149.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="1220.0" y="160.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="61.0" width="132.0" x="1332.0" y="204.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="1496.0" y="210.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="65.0" width="105.0" x="1638.0" y="202.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask5" id="BPMNShape_usertask5">
+        <omgdc:Bounds height="68.0" width="105.0" x="1772.0" y="204.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask6" id="BPMNShape_usertask6">
+        <omgdc:Bounds height="61.0" width="105.0" x="1902.0" y="207.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask5" id="BPMNShape_scripttask5">
+        <omgdc:Bounds height="55.0" width="181.0" x="1600.0" y="340.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
+        <omgdc:Bounds height="35.0" width="35.0" x="2130.0" y="350.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startevent2" id="BPMNShape_startevent2">
+        <omgdc:Bounds height="35.0" width="35.0" x="1103.0" y="300.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask6" id="BPMNShape_scripttask6">
+        <omgdc:Bounds height="55.0" width="181.0" x="2440.0" y="228.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent4" id="BPMNShape_endevent4">
+        <omgdc:Bounds height="35.0" width="35.0" x="2780.0" y="238.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask7" id="BPMNShape_scripttask7">
+        <omgdc:Bounds height="55.0" width="131.0" x="2280.0" y="228.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask8" id="BPMNShape_scripttask8">
+        <omgdc:Bounds height="55.0" width="105.0" x="2650.0" y="228.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="711.0" y="256.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1000.0" y="255.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="165.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="220.0" y="255.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="325.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="560.0" y="256.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="1181.0" y="181.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1220.0" y="180.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="1260.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1397.0" y="179.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1398.0" y="204.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="16.0" x="1380.0" y="179.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="1260.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1548.0" y="179.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1548.0" y="210.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="13.0" x="1540.0" y="179.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="1260.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1689.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1690.0" y="202.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="46.0" x="1658.0" y="179.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="1260.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1824.0" y="179.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1824.0" y="204.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="27.0" x="1792.0" y="179.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
+        <omgdi:waypoint x="1260.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1954.0" y="179.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1954.0" y="207.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="30.0" x="1940.0" y="179.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="1398.0" y="265.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1397.0" y="367.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1600.0" y="367.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow18" id="BPMNEdge_flow18">
+        <omgdi:waypoint x="1548.0" y="265.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1548.0" y="366.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1600.0" y="367.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="1690.0" y="267.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1690.0" y="340.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="1824.0" y="272.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1824.0" y="366.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1781.0" y="367.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
+        <omgdi:waypoint x="1954.0" y="268.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1954.0" y="367.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1781.0" y="367.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow20" id="BPMNEdge_flow20">
+        <omgdi:waypoint x="1781.0" y="367.0"></omgdi:waypoint>
+        <omgdi:waypoint x="2130.0" y="367.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow21" id="BPMNEdge_flow21">
+        <omgdi:waypoint x="1120.0" y="300.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1120.0" y="213.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="2211.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="2280.0" y="255.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="2621.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="2650.0" y="255.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow24" id="BPMNEdge_flow24">
+        <omgdi:waypoint x="2411.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="2440.0" y="255.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
+        <omgdi:waypoint x="2755.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="2780.0" y="255.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
